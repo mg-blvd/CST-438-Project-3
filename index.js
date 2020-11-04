@@ -20,7 +20,7 @@ app.use(session({
 }));
 app.set('view engine', 'ejs');
 
-
+//Added this
 
 const connection = mysql.createConnection({
     host: process.env.HOST, //local
