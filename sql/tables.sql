@@ -5,7 +5,7 @@ drop table if exists users;
 -- To mae a new database in sql we do:
 -- CREATE DATABASE database_name;
 
-
+-- mysql -u user -p dbName < sql/tables.sql
 
 create table users (
   user_id      integer primary key AUTO_INCREMENT,
@@ -24,13 +24,11 @@ create table states (
 create table pins (
   pin_id      integer primary key AUTO_INCREMENT,
   user        integer,
-  cases       integer,    -- can't get the the cases from the states table
-  state       varchar(2);
+  state       varchar(2),
   location    varchar(30),
   description varchar(200),
   air_quality varchar(100),
   is_public   boolean,   -- here should it come from the user?
-  foreign key (user) references users(user_id),
-  foreign key (state) references states(state)
+  foreign key (user) references users(user_id)
 );
 
