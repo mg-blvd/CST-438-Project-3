@@ -2,9 +2,10 @@ drop table if exists pins;
 drop table if exists states;
 drop table if exists users;
 
--- To mae a new database in sql we do:
+-- To make a new database in sql we do:
 -- CREATE DATABASE database_name;
 
+-- To insert into the database
 -- mysql -u user -p dbName < sql/tables.sql
 
 create table users (
