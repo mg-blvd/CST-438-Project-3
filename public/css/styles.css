@@ -1,0 +1,91 @@
+#titleText, h1#sitename{
+    font-family: 'Pacifico', cursive;
+    color: darkgreen;
+}
+
+#createAccountError {
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    
+}
+
+#siteBtn:visited, #siteBtn:link, #siteBtn:hover, #siteBtn:active {
+    font-family: 'Pacifico', cursive;
+    color: darkgreen;
+    text-decoration: none !important;
+}
+
+div.productSm{
+    width: 25%;
+    box-shadow: 0px 5px 5px grey;
+}
+
+div.crop{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    height: 200px;
+}
+
+img.productPic{
+    height: 100%;
+    width: 100%;
+}
+
+.some_div{
+  height: 250px;
+  width: 250px;
+  margin-bottom: 200px;
+}
+
+.white_background{
+  background-color: white;
+  padding-bottom: 2px !important;
+}
+
+.btn-success {
+    border-color: #e7e7e7;
+    border-width: 2px;
+}
+
+.btn-top-rght {
+    position: absolute;
+    right: 1%;
+    top: 3%;
+    
+    background-color: green !important;
+}
+
+.btn-top-rght:hover {
+    position: absolute;
+    right: 1%;
+    top: 3%;
+    background-color: #00cc44 !important;
+    border-color: white !important;
+}
+
+.txt-align-rght {
+    text-align: right;
+}
+
+.txt-sign-up {
+    color: #404040;
+}
+
+.green-txt {
+    color: green !important;
+}
+
+.profile-txt {
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+hr {
+    padding: 0px;
+    margin: 0px;    
+}
