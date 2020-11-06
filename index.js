@@ -182,7 +182,13 @@ app.post('/register', async function(req, res){
 
 app.get('/leAdmin', function(req, res) { // the admin, a little french
     
-    res.render('leAdmin');
+    var stmt = "select * from users;";
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        else{
+            res.render('leAdmin', {users: result});
+        }
+    });
 });
 
 

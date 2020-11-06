@@ -1,1 +1,30 @@
-<h1>Yo, admin</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('templates/header')%>
+        
+        <h1>Admin</h1>
+    </head>
+    
+    <div>
+        <%users.forEach(function(usr){%>
+            <ul>
+                <li>
+                    Id: <%=usr.user_id%>
+                </li>
+                <li>
+                    username: <%=usr.username%>
+                </li>
+                <li>
+                    first name: <%=usr.first_name%>
+                </li>
+                <li>
+                    last name: <%=usr.last_name%>
+                </li>
+                
+            </ul>
+        
+        <%});%>
+    </div>
+
+</html>
