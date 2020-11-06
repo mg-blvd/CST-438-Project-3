@@ -3,6 +3,13 @@
     color: darkgreen;
 }
 
+#sitename {
+    font-size: 50px;
+    font-weight: bold;
+    padding-top: 0px;
+    font-family: 'Dosis', sans-serif;
+}
+
 #createAccountError {
     margin-left: 25%;
     margin-right: 25%;
@@ -90,18 +97,59 @@ hr {
     margin: 0px;    
 }
 
-.color1 {
+.colorBlack {
     color: #222831;
 }
 
-.color2 {
+.colorGray {
     color: #393D46;
 }
 
-.color3 {
+.colorBlue {
     color: #52C1D5;
 }
 
-.color4extra {
+.colorRed {
+    color: #E74545;
+}
+
+.jumbotron {
+    position: relative;
+    top: -20px;
     
+    padding-bottom: 30px;
+    
+    background-color: #6E98B8;
+}
+
+.blk-background {
+    background-color: #FFFFFF;
+}
+
+.button5 {
+
+    /*display:inline-block;*/
+    /*margin:0 0.2em 0.2em 0;*/
+    padding:0.46em 1.6em;
+    border:0.1em solid #FFFFFF;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    /*font-family:'Roboto',sans-serif;*/
+    font-weight:300;
+    color:#FFFFFF;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    background-color: #222831;
+    text-align:center;
+    transition: all 0.15s;
+
+    alignment-baseline: central;
+}
+
+.button5:hover {
+    text-shadow: 0 0 2em rgba(255,255,255,1);
+    color:#52C1D5;
+    border-color:#52C1D5;
+    text-decoration: none;
+    border-width: 3px;
 }
