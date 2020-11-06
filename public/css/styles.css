@@ -1,4 +1,4 @@
-#titleText, h1#sitename{
+#titleText {
     font-family: 'Pacifico', cursive;
     color: darkgreen;
 }
@@ -88,4 +88,20 @@ img.productPic{
 hr {
     padding: 0px;
     margin: 0px;    
+}
+
+.color1 {
+    color: #222831;
+}
+
+.color2 {
+    color: #393D46;
+}
+
+.color3 {
+    color: #52C1D5;
+}
+
+.color4extra {
+    
 }
