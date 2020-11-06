@@ -40,7 +40,7 @@ function isAuthenticated(req, res, next){
 
 
 function checkUsername(username){
-    let stmt = 'SELECT * FROM user WHERE username=?';
+    let stmt = 'SELECT * FROM users WHERE username=?';
     return new Promise(function(resolve, reject){
        connection.query(stmt, [username], function(error, results){
            if(error) throw error;
@@ -179,6 +179,13 @@ app.post('/register', async function(req, res){
     }); 
 });
 //***************************************************************************
+
+app.get('/leAdmin', function(req, res) { // the admin, a little french
+    
+    res.render('leAdmin');
+});
+
+
 
 app.get('/', function(req, res) {
    res.send("At least it works!"); 
