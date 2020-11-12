@@ -188,7 +188,8 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 
 
 app.get('/', function(req, res) {
-   res.send("At least it works!"); 
+    // res.send("At least it works!");
+    res.render('home');
 });
 
 app.get('/*', function(req, res) {
