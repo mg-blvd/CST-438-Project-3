@@ -40,7 +40,7 @@ function isAuthenticated(req, res, next){
 
 
 function checkUsername(username){
-    let stmt = 'SELECT * FROM user WHERE username=?';
+    let stmt = 'SELECT * FROM users WHERE username=?';
     return new Promise(function(resolve, reject){
        connection.query(stmt, [username], function(error, results){
            if(error) throw error;
@@ -94,6 +94,98 @@ function passwordIsValid(password) {
     return setVals && password.length > 6;
     
 }
+
+//*************************************************************** Login and Register Routes
+
+/* Login Routes */
+app.get('/login', function(req, res){
+    res.render('login');
+});
+
+app.post('/login', async function(req, res){
+    let isUserExist   = await checkUsername(req.body.username);
+    let hashedPasswd  = isUserExist.length > 0 ? isUserExist[0].password : '';
+    let passwordMatch = await checkPassword(req.body.password, hashedPasswd);
+    if(passwordMatch){
+        req.session.authenticated = true;
+        req.session.userInfo = isUserExist[0];
+        
+        if (req.session.userInfo.is_admin) {
+            
+            // Doesn't exist yet
+            res.redirect('/leAdmin');
+            
+        } else {
+            
+            res.redirect('/');
+        }
+        
+    }
+    else{
+        res.render('login', {error: true});
+    }
+});
+
+/* Register Routes */
+app.get('/register', function(req, res){
+    let anError = req.query.issue;
+    if(anError == undefined)
+    {
+        anError = "none";
+    }
+    res.render('register', {issue : anError});
+});
+
+app.post('/register', async function(req, res){
+    var firstName = req.body.firstname;
+    var lastName = req.body.lastname;
+    var username = req.body.username;
+    var password = req.body.password;
+    var passwordConfirm = req.body.passwordConfirm;
+    
+    var dbQueryResult = await checkUsername(username);
+    var areSame = password === passwordConfirm;
+    var validPassword = passwordIsValid(password);
+    
+    let issueRedirect = "/register?issue=";
+    
+    //If the db has a record with the username, we will redirect to the register and let the user know.
+    if(dbQueryResult.length > 0) {
+        res.redirect(issueRedirect + "username+is+already+taken");
+        return;
+    }
+    
+    //If the passwords do no match, the user will be redirected back to the register page and will see a message
+    if(!areSame) {
+        res.redirect(issueRedirect + "passwords+do+not+match");
+        return;
+    }
+    
+    if(!validPassword) {
+        res.redirect(issueRedirect + "password+is+invalid");
+        return;
+    }
+    
+    //create user and save in the DB
+    let salt = 10;
+    bcrypt.hash(password, salt, function(error, hash){
+        if(error) throw error;
+        let stmt = 'INSERT INTO users (first_name, last_name, username, password, is_admin) VALUES (?, ?, ?, ?, ?)';
+        let data = [firstName, lastName, username, hash, false];
+        connection.query(stmt, data, function(error, result){
+           if(error) throw error;
+           res.redirect('/login');
+        });
+    }); 
+});
+//***************************************************************************
+
+app.get('/leAdmin', function(req, res) { // the admin, a little french
+    
+    res.render('leAdmin');
+});
+
+
 
 app.get('/', function(req, res) {
    res.send("At least it works!"); 
