@@ -31,7 +31,69 @@ const connection = mysql.createConnection({
 });
 connection.connect(); 
 
+//***********API Functions***********
 
+/*
+   This function returns a Promise. This promise is a request to the COVID Tracking API to see if
+   it is up and running. It won't be used in the project, but we can use it for testing purposes
+   during development.
+*/
+function covidAPIWorking() {
+    return new Promise(function(resolve, reject) {
+        let apiStatus = {
+            method : "GET",
+            url : "https://api.covidtracking.com/v1/status.json"
+        }
+        
+        request(apiStatus, function(error, response, body) {
+            if(error) reject(error);
+            
+            resolve(JSON.parse(body));
+        });
+    });
+}
+
+/*
+    This API is used to get the latest COVID info for each state. Used to updated the COVID info in
+    our DB.
+*/
+function getLatestCOVIDStatesInfo() {
+    return new Promise(function(resolve, reject){
+       let statesReq = {
+           method : "GET",
+           url : "https://api.covidtracking.com/v1/states/current.json"
+       }
+       
+       request(statesReq, function(error, response, body) {
+           if(error) reject(error);
+           
+           resolve(JSON.parse(body));
+       });
+    });
+}
+
+/*
+    This function accepts both a city and a state. It will then query our Air Quality API and get
+    the current air quality of that city. If the city is found, the body's status is "success".
+    Otherwise, it is "failure".
+*/
+function getCityAirQuality(city, state) {
+    return new Promise(function(resolve, reject){
+        var queryURL = "http://api.airvisual.com/v2/city?city=" + city + "&state=" + state +
+                  "&country=USA&key=" + process.env.AQAPIKEY;
+
+       let cityAQReq = {
+           method : "GET",
+           url : queryURL
+       }
+       
+       request(cityAQReq, function(error, response, body) {
+           if(error) reject(error);
+           
+           resolve(JSON.parse(body));
+       });
+    });
+}
 
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
@@ -188,7 +250,14 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 
 
 app.get('/', function(req, res) {
-   res.send("At least it works!"); 
+    getLatestCOVIDStatesInfo()
+        .then(function(result) {
+            res.json(result);
+        })
+        .catch(function(error) {
+            console.log(error);
+            res.send(error);
+        });
 });
 
 app.get('/*', function(req, res) {
