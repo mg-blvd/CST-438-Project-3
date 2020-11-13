@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var request = require('request');
 var app = express();
+const cron = require('node-cron');
 
 var session = require('express-session');
 var bcrypt = require('bcrypt');
@@ -156,6 +157,16 @@ function passwordIsValid(password) {
     return setVals && password.length > 6;
     
 }
+
+//*************************************************************** Testing the time thing
+function theTime(time){
+    console.log("the time is " + time);
+    console.log("actual time " + new Date);
+}
+
+cron.schedule('0 * * * * *', function(){
+    theTime("1 minute more");
+});
 
 //*************************************************************** Login and Register Routes
 
