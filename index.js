@@ -264,6 +264,14 @@ app.get('/', function(req, res) {
             console.log(error);
             res.send(error);
         });
+        
+    getCityAirQuality("Salinas", "California")
+        .then(function(result){
+            console.log("result for air quality\n" + result);
+        })
+        .catch(function(error){
+            console.log("error for air quality\n" + error);
+        });
 });
 
 app.get('/*', function(req, res) {
