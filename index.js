@@ -96,6 +96,54 @@ function getCityAirQuality(city, state) {
     });
 }
 
+/*
+    This function is a helper function that connects a few other functions together. First, we get
+    the latest covid info from our COVID API. Then, we send that data into another function that 
+    will update our DB with the latest information. If there is an error, we print the error. 
+*/
+function updateStatesTable() {
+    getLatestCOVIDStatesInfo()
+        .then(sendStatesDataToDB)
+        .catch(function(error){
+            console.log(error);
+        });
+}
+
+/*
+    This function accepts the new COVID information and updates our DB with it. It will create a 
+    that will have multiple update statemts with all the new information we gathered from the API. 
+*/
+function sendStatesDataToDB(result) {
+    let stmt = "UPDATE states SET covid_death = ?, covid_count = ?, trajectory_hospitalize = ? " +
+               "WHERE state_ab = ?;";
+    var query = "";
+    var data = [];
+   
+    result.forEach(function(singleState) {
+            query += stmt;
+            data.push(singleState.deathIncrease);
+            data.push(singleState.positiveIncrease);
+            data.push(singleState.hospitalizedIncrease);
+            data.push(singleState.state);
+        });
+        
+        connection.query(query, data, function(error, results) {
+            if(error) throw error;
+            
+            console.log("Update successful!");
+        });
+}
+
+function printStatesTable() {
+    let query = "SELECT covid_death, covid_count, trajectory_hospitalize, state_ab FROM states;";
+    
+    connection.query(query, [], function(error, results) {
+        if(error) throw error;
+
+        console.log(results);
+    })
+}
+
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
     else next();
@@ -267,22 +315,8 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 
 
 app.get('/', function(req, res) {
-    getLatestCOVIDStatesInfo()
-        .then(function(result) {
-            res.json(result);
-        })
-        .catch(function(error) {
-            console.log(error);
-            res.send(error);
-        });
-        
-    getCityAirQuality("Salinas", "California")
-        .then(function(result){
-            console.log("result for air quality\n" + result);
-        })
-        .catch(function(error){
-            console.log("error for air quality\n" + error);
-        });
+    updateStatesTable();
+    res.send("Works!");
 });
 
 app.get('/*', function(req, res) {
