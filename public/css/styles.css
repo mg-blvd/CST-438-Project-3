@@ -1,4 +1,4 @@
-/* LOGIN file CSS*/
+/*** LOGIN file CSS ***/
 .jumbotron {
     position: relative;
     top: -20px;
@@ -35,6 +35,38 @@
     text-shadow: 0 0 2em white;
     border-color:black;
 }
+
+/*** HOME ejs file CSS ***/
+.container a, .form-inline, .container li a {
+    font-family: 'Francois One', sans-serif;
+    text-decoration: none;
+    font-size: 30px;
+}
+.jumbotron2 {
+    padding: 30px 30px;
+    color: #D8E8F0;
+    background-color: #3C84A7;
+    border-radius: 10px;
+}
+.display-5 {
+    font-size: 60px;
+}
+.city {
+    font-family: 'Itim', cursive;
+    padding-top: 70px;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+.jumbotron3 {
+    font-family: 'Francois One', sans-serif;
+    padding: 30px 30px;
+    color: #3C84A7;
+    background-color: #D8E8F0;
+    border-radius: 10px;
+}
+
+
 
 #titleText {
     font-family: 'Pacifico', cursive;
