@@ -1,3 +1,41 @@
+/* LOGIN file CSS*/
+.jumbotron {
+    position: relative;
+    top: -20px;
+    padding-bottom: 30px;
+    background-color: #6E98B8;
+}
+.topButton, .bottomButton {
+    padding:0.46em 1.6em;
+    text-decoration:none;
+    border:0.1em solid #FFFFFF;
+    border-radius: .5em;
+    color:#FFFFFF;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.15s;
+    alignment-baseline: central;
+}
+.bottomButton {
+    background-color: #222831;
+}
+.topButton:hover, .bottomButton:hover {
+    text-decoration: none;
+    border-width: 2px;
+}
+.topButton:hover {
+    color: white;
+    background-color: black;
+    text-shadow: 0 0 2em black;
+    border-color:white;
+}
+.bottomButton:hover {
+    color: black;
+    background-color: white;
+    text-shadow: 0 0 2em white;
+    border-color:black;
+}
+
 #titleText {
     font-family: 'Pacifico', cursive;
     color: darkgreen;
@@ -109,47 +147,7 @@ hr {
     color: #52C1D5;
 }
 
+
 .colorRed {
     color: #E74545;
-}
-
-.jumbotron {
-    position: relative;
-    top: -20px;
-    
-    padding-bottom: 30px;
-    
-    background-color: #6E98B8;
-}
-
-.blk-background {
-    background-color: #FFFFFF;
-}
-
-.button5 {
-
-    /*display:inline-block;*/
-    /*margin:0 0.2em 0.2em 0;*/
-    padding:0.46em 1.6em;
-    border:0.1em solid #FFFFFF;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    /*font-family:'Roboto',sans-serif;*/
-    font-weight:300;
-    color:#FFFFFF;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    background-color: #222831;
-    text-align:center;
-    transition: all 0.15s;
-
-    alignment-baseline: central;
-}
-
-.button5:hover {
-    text-shadow: 0 0 2em rgba(255,255,255,1);
-    color:#52C1D5;
-    border-color:#52C1D5;
-    text-decoration: none;
-    border-width: 3px;
 }

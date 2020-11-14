@@ -11,18 +11,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  </head>
  
-	<body class="blk-background">
-			<div class='jumbotron'>
-				<h1 class="text-center" id="sitename">
-                	Should I Go There? <br>
-                	Login
-            	</h1>
-        		<br>
-        			<div class="row d-flex justify-content-center">
-						<a href="/" class="button5">Home</a>
-					</div>
-				
+	<body>
+		<div class='jumbotron'>
+			<h1 class="text-center" id="sitename">
+            	Should I Go There? <br>
+            	Login
+        	</h1>
+    		<br>
+			<div class="row d-flex justify-content-center">
+				<a href="/" class="topButton">Home</a>
 			</div>
+		</div>
 			
 		<div class='container'>
 		    <%if(typeof error != 'undefined' && error){%>
@@ -42,31 +41,26 @@
 						<input type='password' class='form-control' id='password' name='password' placeholder='****' required>
 					</div>
 				</div>
-				
-					<div class="row d-flex justify-content-center">
-							<button class="button5" >Login</button>
-					</div>
+				<div class="row d-flex justify-content-center">
+					<button class="bottomButton" >Login</button>
+				</div>
 			</form>
 			
 			<br>
 			
 			<div class='container'>
 				<div class="row justify-content-md-center">
-				    <div class="col col-lg-2">
-				    </div>
+				    <div class="col col-lg-2"></div>
 				    
 				    <div class="col-md-auto txt-sign-up">
-				    	
 				    	Don't have an account?
-				    	
 				    </div>
 				    
-				    <div class="col col-lg-2">
-				    </div>
+				    <div class="col col-lg-2"></div>
 				</div>
 				
 				<div class="row">
-						<a href="/register" class="button5 col-2 offset-5">Sign up here!</a>
+					<a href="/register" class="bottomButton col-2 offset-5">Sign up here!</a>
 				</div>
 			</div>
 			
