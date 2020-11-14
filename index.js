@@ -215,7 +215,7 @@ function theTime(time){ // a tester function
 cron.schedule('0 0 0 * * *', function(){
     // the way it works is sec min hour day month dayweek
     // the * is for any, if its a digit then its for when it matches
-    console.log("Triggered for the day");
+    console.log("Triggered for the day, " + new Date);
     updateStatesTable();
 });
 
