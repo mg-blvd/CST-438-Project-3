@@ -207,13 +207,16 @@ function passwordIsValid(password) {
 }
 
 //*************************************************************** Testing the time thing
-function theTime(time){
+function theTime(time){ // a tester function
     console.log("the time is " + time);
     console.log("actual time " + new Date);
 }
 
-cron.schedule('0 * * * * *', function(){
-    theTime("1 minute more");
+cron.schedule('0 0 0 * * *', function(){
+    // the way it works is sec min hour day month dayweek
+    // the * is for any, if its a digit then its for when it matches
+    console.log("Triggered for the day");
+    updateStatesTable();
 });
 
 //*************************************************************** Login and Register Routes
