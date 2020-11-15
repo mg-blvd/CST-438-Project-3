@@ -3,16 +3,24 @@
     <head>
         <title>Register Page</title>
         <%- include('templates/header')%>
+        <!--button styling-->
+        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     </head>
     
-    <body>
-        <div id='titleText' class='jumbotron some_background'>
-            <h1 class='text-center'>Register for your own <br> Should I Go There?</h1>
+    <body class="log-background">
+        <div class='jumbotron'>
+            <h1 class='text-center' id="sitename">Register for your own <br> Should I Go There?</h1>
         </div>
         <% if(issue !== "none") { %>
             <p id='createAccountError' class='alert alert-secondary' role='alert'><%= issue %></p>
         <% } %>
         <form action='/register' method='POST' style='margin-left:25%;'>
+            <div class='form-row'>
+                <div class='form-group col-md-4'>
+                    <label for='username'>Username: </label>
+                    <input type='text' id='username' name='username' class='form-control' placeholder="Ex. newUser123" required>
+                </div>
+            </div>
             <div class='form-row'>
                 <div class='form-group col-md-4'>
                     <label for='firstname'>First Name: </label>
@@ -21,12 +29,6 @@
                 <div class='form-group col-md-4'>
                     <label for='lastname'>Last Name: </label>
                     <input type='text' id='lastname' name='lastname' class='form-control' placeholder='Ex. Smith' required>
-                </div>
-            </div>
-            <div class='form-row'>
-                <div class='form-group col-md-4'>
-                    <label for='username'>Username: </label>
-                    <input type='text' id='username' name='username' class='form-control' placeholder="Ex. newUser123" required>
                 </div>
             </div>
             <div class='form-row'>
@@ -40,11 +42,11 @@
                 </div>
             </div>
             <br>
-            <button type='submit' class='btn btn-outline-dark'>Register!</button>
+            <button type='submit' class='bottomButton btn'>Register!</button>
         </form>
         <br>
         <a href='/'>
-            <button  class='btn btn-primary' style='margin-left:25%'>Go Back Home</button>
+            <button  class='bottomButton btn' style='margin-left:25%'>Go Back Home</button>
         </a>
     </body>
 

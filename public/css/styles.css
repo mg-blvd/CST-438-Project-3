@@ -1,4 +1,9 @@
 /*** LOGIN file CSS ***/
+.log-background {
+    background-image: url("../img/nature4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .jumbotron {
     position: relative;
     top: -20px;
@@ -37,8 +42,37 @@
     text-shadow: 0 0 2em white;
     border-color:black;
 }
+.txt-align-rght {
+    text-align: right;
+}
+
+/*** REGISTER file CSS ***/
+#sitename {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Dosis', sans-serif;
+}
+#createAccountError {
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+.col-sm-4, .col-md-auto, label {
+    font-size: 25px;
+    font-weight: bolder;
+}
 
 /*** HOME ejs file CSS ***/
+/*.nav {*/
+    /*margin: 0;*/
+    /*padding: 10px 10px;*/
+/*}*/
+.home-background {
+    background-image: url("../img/nature2.jpg");
+    background-size: cover;
+}
 .container i a, .form-inline{
     font-family: 'Francois One', sans-serif;
     text-decoration: none;
@@ -58,7 +92,7 @@
 .jumbotron2 {
     padding: 30px 30px;
     color: #D8E8F0;
-    background-color: #3C84A7;
+    background-color: rgba(60, 132, 167, 0.7);
     border-radius: 10px;
 }
 .display-5 {
@@ -68,7 +102,7 @@
     font-family: 'Francois One', sans-serif;
     padding: 30px 30px;
     color: #3C84A7;
-    background-color: #D8E8F0;
+    background-color: rgba(216, 232, 240, 0.9);
     border-radius: 10px;
 }
 .danger, .yellow, .succes {
@@ -92,104 +126,77 @@
     font-size: 20px;
     letter-spacing: 1px;
 }
-
-
-
-#titleText {
-    font-family: 'Pacifico', cursive;
-    color: darkgreen;
+#states {
+    border-radius: 0.25em;
+    color: rgb(60, 132, 170);
 }
 
-#sitename {
-    font-size: 50px;
-    font-weight: bold;
-    padding-top: 0px;
-    font-family: 'Dosis', sans-serif;
-}
 
-#createAccountError {
-    margin-left: 25%;
-    margin-right: 25%;
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
+/*div.productSm{*/
+/*    width: 25%;*/
+/*    box-shadow: 0px 5px 5px grey;*/
+/*}*/
+
+/*div.crop{*/
+/*    width: 100%;*/
+/*    margin: 0 auto;*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*    height: 200px;*/
+/*}*/
+
+/*img.productPic{*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.some_div{*/
+/*  height: 250px;*/
+/*  width: 250px;*/
+/*  margin-bottom: 200px;*/
+/*}*/
+
+/*.white_background{*/
+/*  background-color: white;*/
+/*  padding-bottom: 2px !important;*/
+/*}*/
+
+/*.btn-success {*/
+/*    border-color: #e7e7e7;*/
+/*    border-width: 2px;*/
+/*}*/
+
+/*.btn-top-rght {*/
+/*    position: absolute;*/
+/*    right: 1%;*/
+/*    top: 3%;*/
     
-}
+/*    background-color: green !important;*/
+/*}*/
 
-#siteBtn:visited, #siteBtn:link, #siteBtn:hover, #siteBtn:active {
-    font-family: 'Pacifico', cursive;
-    color: darkgreen;
-    text-decoration: none !important;
-}
+/*.btn-top-rght:hover {*/
+/*    position: absolute;*/
+/*    right: 1%;*/
+/*    top: 3%;*/
+/*    background-color: #00cc44 !important;*/
+/*    border-color: white !important;*/
+/*}*/
 
-div.productSm{
-    width: 25%;
-    box-shadow: 0px 5px 5px grey;
-}
 
-div.crop{
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    height: 200px;
-}
+/*.txt-sign-up {*/
+/*    color: #404040;*/
+/*}*/
 
-img.productPic{
-    height: 100%;
-    width: 100%;
-}
+/*.green-txt {*/
+/*    color: green !important;*/
+/*}*/
 
-.some_div{
-  height: 250px;
-  width: 250px;
-  margin-bottom: 200px;
-}
+/*.profile-txt {*/
+/*    color: white;*/
+/*    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
+/*}*/
 
-.white_background{
-  background-color: white;
-  padding-bottom: 2px !important;
-}
-
-.btn-success {
-    border-color: #e7e7e7;
-    border-width: 2px;
-}
-
-.btn-top-rght {
-    position: absolute;
-    right: 1%;
-    top: 3%;
-    
-    background-color: green !important;
-}
-
-.btn-top-rght:hover {
-    position: absolute;
-    right: 1%;
-    top: 3%;
-    background-color: #00cc44 !important;
-    border-color: white !important;
-}
-
-.txt-align-rght {
-    text-align: right;
-}
-
-.txt-sign-up {
-    color: #404040;
-}
-
-.green-txt {
-    color: green !important;
-}
-
-.profile-txt {
-    color: white;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
-
-hr {
-    padding: 0px;
-    margin: 0px;    
-}
+/*hr {*/
+/*    padding: 0px;*/
+/*    margin: 0px;    */
+/*}*/
