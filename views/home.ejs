@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <%- include('templates/header')%>
+    <title>Should I Go There? Login</title>
+    
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--navigation bar style-->
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+    <!--rest of body style-->
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+ </head>
+    <body class="home-background">
+        <!--navigation bar-->
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #52C1D5">
+            <div class="nav container">
+                <!--left side-->
+               <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="#">  Should I Go There?</a></i>
+                <!--search bar-->
+                <div class="form-inline my-3 my-lg-0">
+                        <input type="search" class="form-control" id="inputSearch" placeholder="Search for a city... ex. Salinas">
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </div>
+                <!--right side-->
+                <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/login">  Log In</a></i></li>
+            </div>
+        </nav>
+        
+        <!-- City Content -->
+        <div class="city container">
+            <!-- Jumbotron Header -->
+            <header class="jumbotron2 my-5">
+                <h1 class="display-5">Search For a State!</h1>
+                
+                <label for="states">Choose a state:</label>
+                <select name="states" id="states">
+                    <option value="default">Choose</option>
+                    <option value="alabama">Alabama</option>
+                    <option value="alaska">Alaska</option>
+                    <option value="arizona">Arizona</option>
+                    <option value="ark">Arkansas</option>
+                    <option value="cali">California</option>
+                    <option value="color">Colorado</option>
+                    <option value="conn">Connecticut</option>
+                    <option value="del">Delaware</option>
+                    <option value="flor">Florida</option>
+                    <option value="georg">Georgia</option>
+                    <option value="hawaii">Hawaii</option>
+                    <option value="idaho">Idaho</option>
+                    <option value="illinois">Illinois</option>
+                    <option value="indiana">Indiana</option>
+                    <option value="iowa">Iowa</option>
+                    <option value="kansas">Kansas</option>
+                    <option value="kentucky">Kentucky</option>
+                    <option value="loui">Louisiana</option>
+                    <option value="maine">Maine</option>
+                    <option value="mary">Maryland</option>
+                    <option value="mass">Massachusetts</option>
+                    <option value="michigan">Michigan</option>
+                    <option value="minn">Minnesota</option>
+                    <option value="mississ">Mississipi</option>
+                    <option value="missouri">Missouri</option>
+                    <option value="mont">Montana</option>
+                    <option value="nebraska">Nebraska</option>
+                    <option value="nevada">Nevada</option>
+                    <option value="hampshire">New Hampshire</option>
+                    <option value="jersey">New Jersey</option>
+                    <option value="mexico">New Mexico</option>
+                    <option value="york">New York</option>
+                    <option value="northcaro">North Carolina</option>
+                    <option value="northdako">North Dakota</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="okla">Oklahoma</option>
+                    <option value="oregon">Oregon</option>
+                    <option value="penn">Pennsylvania</option>
+                    <option value="rhode">Rhode Island</option>
+                    <option value="southcaro">South Carolina</option>
+                    <option value="southdako">South Dakota</option>
+                    <option value="tenn">Tennessee</option>
+                    <option value="texas">Texas</option>
+                    <option value="utah">Utah</option>
+                    <option value="vermont">Vermont</option>
+                    <option value="virgin">Virginia</option>
+                    <option value="washington">Washington</option>
+                    <option value="west">West Virginia</option>
+                    <option value="wiscon">Wisconsin</option>
+                    <option value="wyoming">Wyoming</option>
+                </select>
+            </header>
+        </div>
+        
+        <!-- Default Pin Content -->
+        <div class="container">
+            <header class="jumbotron3 my-5">
+                <h1 class="display-5">Default Pins:</h1>
+                
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><i class="danger fas fa-map-marker-alt"></i><span class="space"></span>United States, South Carolina, Myrtle Beach, 69 AQI, 194K Covid Cases</li>
+                  <li class="list-group-item"><i class="yellow fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
+                  <li class="list-group-item"><i class="succes fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
+                  <li class="list-group-item"><i class="yellow fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
+                  <li class="list-group-item"><i class="danger fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
+                </ul>    
+            </header>
+        </div>
+	</body>
+</html>

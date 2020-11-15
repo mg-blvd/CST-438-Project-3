@@ -1,155 +1,202 @@
-#titleText {
-    font-family: 'Pacifico', cursive;
-    color: darkgreen;
+/*** LOGIN file CSS ***/
+.log-background {
+    background-image: url("../img/nature4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron {
+    position: relative;
+    top: -20px;
+    padding-bottom: 30px;
+    background-color: #6E98B8;
+}
+.topButton, .bottomButton {
+    font-family: 'Itim', cursive;
+    font-size: 20px;
+    padding:0.46em 1.6em;
+    text-decoration:none;
+    border:0.1em solid #FFFFFF;
+    border-radius: .5em;
+    color:#FFFFFF;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.15s;
+    alignment-baseline: central;
+}
+.bottomButton {
+    background-color: #222831;
+}
+.topButton:hover, .bottomButton:hover {
+    text-decoration: none;
+    border-width: 2px;
+}
+.topButton:hover {
+    color: white;
+    background-color: black;
+    text-shadow: 0 0 2em black;
+    border-color:white;
+}
+.bottomButton:hover {
+    color: black;
+    background-color: white;
+    text-shadow: 0 0 2em white;
+    border-color:black;
+}
+.txt-align-rght {
+    text-align: right;
 }
 
+/*** REGISTER file CSS ***/
 #sitename {
     font-size: 50px;
     font-weight: bold;
-    padding-top: 0px;
     font-family: 'Dosis', sans-serif;
 }
-
 #createAccountError {
     margin-left: 25%;
     margin-right: 25%;
     text-align: center;
     font-weight: bold;
     font-size: large;
-    
+}
+.col-sm-4, .col-md-auto, label {
+    font-size: 25px;
+    font-weight: bolder;
 }
 
-#siteBtn:visited, #siteBtn:link, #siteBtn:hover, #siteBtn:active {
-    font-family: 'Pacifico', cursive;
-    color: darkgreen;
-    text-decoration: none !important;
+/*** HOME ejs file CSS ***/
+/*.nav {*/
+    /*margin: 0;*/
+    /*padding: 10px 10px;*/
+/*}*/
+.home-background {
+    background-image: url("../img/nature2.jpg");
+    background-size: cover;
 }
-
-div.productSm{
-    width: 25%;
-    box-shadow: 0px 5px 5px grey;
-}
-
-div.crop{
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    height: 200px;
-}
-
-img.productPic{
-    height: 100%;
-    width: 100%;
-}
-
-.some_div{
-  height: 250px;
-  width: 250px;
-  margin-bottom: 200px;
-}
-
-.white_background{
-  background-color: white;
-  padding-bottom: 2px !important;
-}
-
-.btn-success {
-    border-color: #e7e7e7;
-    border-width: 2px;
-}
-
-.btn-top-rght {
-    position: absolute;
-    right: 1%;
-    top: 3%;
-    
-    background-color: green !important;
-}
-
-.btn-top-rght:hover {
-    position: absolute;
-    right: 1%;
-    top: 3%;
-    background-color: #00cc44 !important;
-    border-color: white !important;
-}
-
-.txt-align-rght {
-    text-align: right;
-}
-
-.txt-sign-up {
-    color: #404040;
-}
-
-.green-txt {
-    color: green !important;
-}
-
-.profile-txt {
-    color: white;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
-
-hr {
-    padding: 0px;
-    margin: 0px;    
-}
-
-.colorBlack {
-    color: #222831;
-}
-
-.colorGray {
-    color: #393D46;
-}
-
-.colorBlue {
-    color: #52C1D5;
-}
-
-.colorRed {
-    color: #E74545;
-}
-
-.jumbotron {
-    position: relative;
-    top: -20px;
-    
-    padding-bottom: 30px;
-    
-    background-color: #6E98B8;
-}
-
-.blk-background {
-    background-color: #FFFFFF;
-}
-
-.button5 {
-
-    /*display:inline-block;*/
-    /*margin:0 0.2em 0.2em 0;*/
-    padding:0.46em 1.6em;
-    border:0.1em solid #FFFFFF;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    /*font-family:'Roboto',sans-serif;*/
-    font-weight:300;
-    color:#FFFFFF;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    background-color: #222831;
-    text-align:center;
-    transition: all 0.15s;
-
-    alignment-baseline: central;
-}
-
-.button5:hover {
-    text-shadow: 0 0 2em rgba(255,255,255,1);
-    color:#52C1D5;
-    border-color:#52C1D5;
+.container i a, .form-inline{
+    font-family: 'Francois One', sans-serif;
     text-decoration: none;
-    border-width: 3px;
+    font-size: 30px;
 }
+.navLogos {
+    font-size: 30px;
+    color: #000080;
+}
+.city {
+    font-family: 'Itim', cursive;
+    padding-top: 70px;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+.jumbotron2 {
+    padding: 30px 30px;
+    color: #D8E8F0;
+    background-color: rgba(60, 132, 167, 0.7);
+    border-radius: 10px;
+}
+.display-5 {
+    font-size: 60px;
+}
+.jumbotron3 {
+    font-family: 'Francois One', sans-serif;
+    padding: 30px 30px;
+    color: #3C84A7;
+    background-color: rgba(216, 232, 240, 0.9);
+    border-radius: 10px;
+}
+.danger, .yellow, .succes {
+    padding-left: 20px;
+    font-size:30px;
+}
+.danger {
+    color: red;
+}
+.yellow {
+    /*yellow made it harder to see*/
+    color: #ffbf00;
+}
+.succes {
+    color: green;
+}
+.space {
+    padding-left: 50px;
+}
+.list-group-item {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+#states {
+    border-radius: 0.25em;
+    color: rgb(60, 132, 170);
+}
+
+
+/*div.productSm{*/
+/*    width: 25%;*/
+/*    box-shadow: 0px 5px 5px grey;*/
+/*}*/
+
+/*div.crop{*/
+/*    width: 100%;*/
+/*    margin: 0 auto;*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*    height: 200px;*/
+/*}*/
+
+/*img.productPic{*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.some_div{*/
+/*  height: 250px;*/
+/*  width: 250px;*/
+/*  margin-bottom: 200px;*/
+/*}*/
+
+/*.white_background{*/
+/*  background-color: white;*/
+/*  padding-bottom: 2px !important;*/
+/*}*/
+
+/*.btn-success {*/
+/*    border-color: #e7e7e7;*/
+/*    border-width: 2px;*/
+/*}*/
+
+/*.btn-top-rght {*/
+/*    position: absolute;*/
+/*    right: 1%;*/
+/*    top: 3%;*/
+    
+/*    background-color: green !important;*/
+/*}*/
+
+/*.btn-top-rght:hover {*/
+/*    position: absolute;*/
+/*    right: 1%;*/
+/*    top: 3%;*/
+/*    background-color: #00cc44 !important;*/
+/*    border-color: white !important;*/
+/*}*/
+
+
+/*.txt-sign-up {*/
+/*    color: #404040;*/
+/*}*/
+
+/*.green-txt {*/
+/*    color: green !important;*/
+/*}*/
+
+/*.profile-txt {*/
+/*    color: white;*/
+/*    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
+/*}*/
+
+/*hr {*/
+/*    padding: 0px;*/
+/*    margin: 0px;    */
+/*}*/
