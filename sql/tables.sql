@@ -18,8 +18,13 @@ create table users (
 );
 
 create table states (
-  state       varchar(2) primary key,
-  covid_count integer
+  state_ab               varchar(2) primary key,
+  covid_count            integer,
+  covid_death            integer,
+  trajectory_death       integer,
+  trajectory_hospitalize integer,
+  trajectory_test        integer,
+  state_name             varchar(25)
 );
 
 create table pins (
