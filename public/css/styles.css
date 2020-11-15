@@ -6,6 +6,8 @@
     background-color: #6E98B8;
 }
 .topButton, .bottomButton {
+    font-family: 'Itim', cursive;
+    font-size: 20px;
     padding:0.46em 1.6em;
     text-decoration:none;
     border:0.1em solid #FFFFFF;
@@ -37,10 +39,21 @@
 }
 
 /*** HOME ejs file CSS ***/
-.container a, .form-inline, .container li a {
+.container i a, .form-inline{
     font-family: 'Francois One', sans-serif;
     text-decoration: none;
     font-size: 30px;
+}
+.navLogos {
+    font-size: 30px;
+    color: #000080;
+}
+.city {
+    font-family: 'Itim', cursive;
+    padding-top: 70px;
+    text-align: center;
+    font-size: 25px;
+    letter-spacing: 2px;
 }
 .jumbotron2 {
     padding: 30px 30px;
@@ -51,19 +64,33 @@
 .display-5 {
     font-size: 60px;
 }
-.city {
-    font-family: 'Itim', cursive;
-    padding-top: 70px;
-    text-align: center;
-    font-size: 25px;
-    letter-spacing: 2px;
-}
 .jumbotron3 {
     font-family: 'Francois One', sans-serif;
     padding: 30px 30px;
     color: #3C84A7;
     background-color: #D8E8F0;
     border-radius: 10px;
+}
+.danger, .yellow, .succes {
+    padding-left: 20px;
+    font-size:30px;
+}
+.danger {
+    color: red;
+}
+.yellow {
+    /*yellow made it harder to see*/
+    color: #ffbf00;
+}
+.succes {
+    color: green;
+}
+.space {
+    padding-left: 50px;
+}
+.list-group-item {
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
 
@@ -165,21 +192,4 @@ img.productPic{
 hr {
     padding: 0px;
     margin: 0px;    
-}
-
-.colorBlack {
-    color: #222831;
-}
-
-.colorGray {
-    color: #393D46;
-}
-
-.colorBlue {
-    color: #52C1D5;
-}
-
-
-.colorRed {
-    color: #E74545;
 }
