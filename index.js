@@ -144,6 +144,21 @@ function printStatesTable() {
     })
 }
 
+function querySingleState(state) {
+    let stmt = "SELECT * FROM states WHERE state_name = ?;";
+    return new Promise(function(resolve, reject){
+       connection.query(stmt, [state], function(error, results){
+          if(error) throw error;
+          resolve(results);
+       });
+    });
+}
+
+function getCityInfo(city, state) {
+    var promises = [querySingleState(state), getCityAirQuality(city, state)];
+    return Promise.all(promises);
+}
+
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
     else next();
@@ -315,6 +330,11 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
     updateStatesTable();
+    getCityInfo('Salinas', 'California')
+    .then(function(result){
+        console.log(result);
+        console.log(result[1].data.current)
+    });
     // res.send("Works!");
     res.render('home');
 });
