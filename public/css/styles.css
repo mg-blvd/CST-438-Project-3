@@ -92,7 +92,7 @@
 .jumbotron2 {
     padding: 30px 30px;
     color: #D8E8F0;
-    background-color: rgba(60, 132, 167, 0.7);
+    background-color: rgb(60, 132, 167);
     border-radius: 10px;
 }
 .display-5 {
@@ -102,7 +102,7 @@
     font-family: 'Francois One', sans-serif;
     padding: 30px 30px;
     color: #3C84A7;
-    background-color: rgba(216, 232, 240, 0.9);
+    background-color: rgb(216, 232, 240);
     border-radius: 10px;
 }
 .danger, .yellow, .succes {
