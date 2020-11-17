@@ -65,23 +65,20 @@
 }
 
 /*** HOME ejs file CSS ***/
-/*.nav {*/
-    /*margin: 0;*/
-    /*padding: 10px 10px;*/
-/*}*/
 .home-background {
     background-image: url("../img/nature2.jpg");
     background-size: cover;
-}
-.container i a, .form-inline{
-    font-family: 'Francois One', sans-serif;
-    text-decoration: none;
-    font-size: 30px;
 }
 .navLogos {
     font-size: 30px;
     color: #000080;
 }
+.container i a{
+    font-family: 'Francois One', sans-serif;
+    text-decoration: none;
+    font-size: 30px;
+}
+
 .city {
     font-family: 'Itim', cursive;
     padding-top: 70px;
@@ -98,6 +95,13 @@
 .display-5 {
     font-size: 60px;
 }
+/*.col-md1 {*/
+/*    margin-top: 20px;*/
+/*}*/
+.col-md-2 {
+    margin-top: 40px;
+}
+
 .jumbotron3 {
     font-family: 'Francois One', sans-serif;
     padding: 30px 30px;
