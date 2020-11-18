@@ -329,11 +329,10 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
-    updateStatesTable();
     getCityInfo('Salinas', 'California')
     .then(function(result){
         console.log(result);
-        console.log(result[1].data.current)
+        //console.log(result[1].data.current)
     });
     // res.send("Works!");
     res.render('home');
