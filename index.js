@@ -222,6 +222,7 @@ function passwordIsValid(password) {
 }
 
 //*************************************************************** Testing the time thing
+updateStatesTable();
 cron.schedule('0 0 0 * * *', function(){
     // the way it works is sec min hour day month dayweek
     // the * is for any, if its a digit then its for when it matches
