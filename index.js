@@ -246,7 +246,6 @@ app.post('/login', async function(req, res){
         
         if (req.session.userInfo.is_admin) {
             
-            // Doesn't exist yet
             res.redirect('/leAdmin');
             
         } else {
@@ -325,16 +324,26 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
     });
 });
 
+app.post('/search', function(req, res) {
+    
+    var stmt = 'select * from states where state_name = ?;';
+    
+    var state = req.body.states;
+    var city = req.body.inputSearch;
+    
+    var airQualityJson;
+
+    
+    getCityInfo(city, state)
+    .then((airQualityJson) => console.log("Test1", airQualityJson));
+
+
+});
 
 
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
-    getCityInfo('Salinas', 'California')
-    .then(function(result){
-        console.log(result);
-        //console.log(result[1].data.current)
-    });
-    // res.send("Works!");
+
     res.render('home');
 });
 
