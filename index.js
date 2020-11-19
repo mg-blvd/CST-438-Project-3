@@ -340,7 +340,7 @@ app.post('/create_pin', function(req, res) {
             res.redirect('/'); // or wherever we want
         }
     });
-    
+});
 
 app.post('/search', function(req, res) {
     
