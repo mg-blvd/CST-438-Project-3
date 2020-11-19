@@ -156,8 +156,8 @@ function querySingleState(state) {
 
 function getCityInfo(city, state) {
     var promises = [querySingleState(state), getCityAirQuality(city, state)];
-    return Promise.all(promises);
-}
+    return Promise.all(promises);//copyright trademark chuy no one has this i made this, some guy named misa says he made this but i think hes crazy
+} 
 
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
@@ -247,7 +247,6 @@ app.post('/login', async function(req, res){
         
         if (req.session.userInfo.is_admin) {
             
-            // Doesn't exist yet
             res.redirect('/leAdmin');
             
         } else {
@@ -342,6 +341,66 @@ app.post('/create_pin', function(req, res) {
         }
     });
     
+
+app.post('/search', function(req, res) {
+    
+    var stmt = 'select * from states where state_name = ?;';
+    
+    var state = req.body.states;
+    var city = req.body.inputSearch;
+    
+    var airQualityJson;
+
+    
+    getCityInfo(city, state) // (Remove whichever one if needed)  Covid Info           this is to check if the air quality was successful         the air quality info               the user info
+    .then((airQualityJson) => res.render('search', {covidInfo : airQualityJson[0][0], airQualitySuccess: airQualityJson[1]["status"], airQualityInfo : airQualityJson[1]["data"], loggedIn : req.session.authenticated}) );
+    
+    // .then((airQualityJson) => console.log("Data: ", airQualityJson) ); (Used only to look at data)
+
+/*
+   Example for reference using California, Salinas  
+{
+    state_ab: 'CA',
+    covid_count: 9811,
+    covid_death: 61,
+    trajectory_death: 0,
+    trajectory_hospitalize: 0,
+    trajectory_test: 0,
+    state_name: 'California'
+}
+    
+{
+status: 'success',
+data: {
+        city: 'Salinas',
+        state: 'California',
+        country: 'USA',
+        location: [Object], // look below for these
+        current: [Object]
+    }
+}
+  
+location: { type: 'Point', coordinates: [ -121.6222, 36.694698 ] },
+current: {
+    weather: {
+        ts: '2020-11-19T02:00:00.000Z',
+        tp: 14,
+        pr: 1020,
+        hu: 82,
+        ws: 2.6,
+        wd: 330,
+        ic: '04n'
+    },
+    pollution: {
+        ts: '2020-11-19T00:00:00.000Z',
+        aqius: 9,
+        mainus: 'p2',
+        aqicn: 3,
+        maincn: 'p2'
+    }
+}
+*/
+
 });
 
 
