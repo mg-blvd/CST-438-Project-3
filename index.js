@@ -326,6 +326,23 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
     });
 });
 
+app.post('/create_pin', function(req, res) {
+    // req.body.thing_name;
+    let stmt = "insert into PINS (user, state, location, description, air_quality, is_public) VALUES (?,?,?,?,?,?);";
+    let data = [req.session.user, req.body.state, req.body.local, req.body.desc, req.body.air_quality, req.session.authenticated];
+    
+    connection.query(stmt, data, function(error, results) {
+        if(error){
+            console.log("error pin making"); 
+            res.redirect('/'); // or wherever the pins are being made
+        }
+        else{
+            console.log("successful pin making");
+            res.redirect('/'); // or wherever we want
+        }
+    });
+    
+});
 
 
 app.get('/', function(req, res) {
