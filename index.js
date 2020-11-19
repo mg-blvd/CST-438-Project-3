@@ -352,8 +352,11 @@ app.post('/search', function(req, res) {
     var airQualityJson;
 
     
-    getCityInfo(city, state) // (Remove whichever one if needed)  Covid Info           this is to check if the air quality was successful         the air quality info               the user info
-    .then((airQualityJson) => res.render('search', {covidInfo : airQualityJson[0][0], airQualitySuccess: airQualityJson[1]["status"], airQualityInfo : airQualityJson[1]["data"], loggedIn : req.session.authenticated}) );
+    getCityInfo(city, state) 
+    .then((airQualityJson) => res.render('search', {covidInfo : airQualityJson[0][0], 
+                                                    airQualitySuccess: airQualityJson[1]["status"], 
+                                                    airQualityInfo : airQualityJson[1]["data"], 
+                                                    loggedIn : req.session.authenticated}) );
     
     // .then((airQualityJson) => console.log("Data: ", airQualityJson) ); (Used only to look at data)
 
