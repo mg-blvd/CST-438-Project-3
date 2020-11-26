@@ -30,11 +30,9 @@ create table states (
 create table pins (
   pin_id      integer primary key AUTO_INCREMENT,
   user        integer,
-  state       varchar(2),
-  location    varchar(30),
-  description varchar(200),
-  air_quality varchar(100),
-  is_public   boolean,   -- here should it come from the user?
+  state_name  varchar(25),
+  city        varchar(30),
+  is_public   boolean,
   foreign key (user) references users(user_id)
 );
 

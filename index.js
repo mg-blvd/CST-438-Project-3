@@ -260,6 +260,12 @@ app.post('/login', async function(req, res){
     }
 });
 
+/* Logout Route */
+app.get('/logout', function(req, res){
+   req.session.destroy();
+   res.redirect('/');
+});
+
 /* Register Routes */
 app.get('/register', function(req, res){
     let anError = req.query.issue;
@@ -326,9 +332,19 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
 });
 
 app.post('/create_pin', function(req, res) {
-    // req.body.thing_name;
-    let stmt = "insert into PINS (user, state, location, description, air_quality, is_public) VALUES (?,?,?,?,?,?);";
-    let data = [req.session.user, req.body.state, req.body.local, req.body.desc, req.body.air_quality, req.session.authenticated];
+    
+    var is_admin_var;
+    
+    if (req.session.userInfo.is_admin == 0) {
+        is_admin_var = false;
+    } else {
+        is_admin_var = true;
+    }
+    
+    let stmt = "insert into pins (user, state_name, city, is_public) values (?,?,?,?)";
+    let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, is_admin_var];
+    
+    console.log(data);
     
     connection.query(stmt, data, function(error, results) {
         if(error){
@@ -353,7 +369,8 @@ app.post('/search', function(req, res) {
 
     
     getCityInfo(city, state) 
-    .then((airQualityJson) => res.render('search', {covidInfo : airQualityJson[0][0], 
+    .then((airQualityJson) => res.render('search', {user : req.session.userInfo,
+                                                    covidInfo : airQualityJson[0][0], 
                                                     airQualitySuccess: airQualityJson[1]["status"], 
                                                     airQualityInfo : airQualityJson[1]["data"], 
                                                     loggedIn : req.session.authenticated}) );
@@ -405,7 +422,6 @@ current: {
 */
 
 });
-
 
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time

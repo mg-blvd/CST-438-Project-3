@@ -1,1 +1,90 @@
-<!--Work In Progress-->
+<html>
+ <head>
+    <%- include('templates/header')%>
+    <title>Should I Go There? - Location Search</title>
+    
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--navigation bar style-->
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+    <!--rest of body style-->
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+ </head>
+ 
+    <body>
+        <% if(!(airQualitySuccess == "success")) { %>
+                
+                <div class"container">
+                    
+                    <div class="row">
+                        
+                        <div class="col" style="padding-top:20%; padding-left:15%;">
+                            
+                            <h2 class="display-5"> The location was not found! Try again </h2> <br>
+                            
+                            <a href='/'><button>Home</button></a>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            <% } else { %>
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col">
+                            <h2 class="display-5"><%=airQualityInfo.country%>, <%=airQualityInfo.state%> (<%=covidInfo.state_ab%>)
+                            
+                            <br>
+                            
+                            <%=airQualityInfo.city%>
+                            
+                            </h2>
+                        </div>
+                    
+                        <div class="col" style="padding-top:20%;">
+                            
+                            <h4 id="covidCases"><u><i>Covid Cases for <%=airQualityInfo.state%></i></u> <br>
+                            
+                            Covid Count: <%=covidInfo.covid_count%> <br>
+                            
+                            Covid Deaths: <%=covidInfo.covid_death%> <br>
+                            
+                            Covid Trajectory Deaths: <%=covidInfo.trajectory_death%> <br>
+                            
+                            Covid Trajectory Hospitalized: <%=covidInfo.trajectory_hospitalize%> <br>
+                            
+                            Covid Trajectory Tested: <%=covidInfo.trajectory_test%> <br>
+                            
+                            </h4>
+                            
+                            <h4 id="covidCases"><u><i>Air Quality for <%=airQualityInfo.city%></i></u> <br>
+                            
+                            Coordinates: <%=airQualityInfo.location.coordinates%> <br>
+                            
+                            Aqius: <%=airQualityInfo.current.pollution.aqius%> <br>
+                            
+                            (Aqius scale: 0 is healthy air quality, 500 is the hazardous air quality)
+                            
+                            </h4>
+                        
+                            <% if(loggedIn) { %>
+                                <form action='/create_pin' method='POST'>
+                                    <input name="userId" type="hidden" value=<%=user.user_id%> >
+                                    <input name="stateName" type="hidden" value=<%=airQualityInfo.state%> >
+                                    <input name="city" type="hidden" value=<%=airQualityInfo.city%> >
+                                    <label>Pin this location?</label>
+                                    <input type="submit" value="Click here!">
+                                </form>
+                            <% }else{ %>
+                                <a href='/login'><button>Login or register to pin this location!</button></a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+    </body>
+
+</html>
