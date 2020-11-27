@@ -6,25 +6,50 @@
         <h1>Admin</h1>
     </head>
     
-    <div>
-        <%users.forEach(function(usr){%>
-            <ul>
-                <li>
-                    Id: <%=usr.user_id%>
-                </li>
-                <li>
-                    username: <%=usr.username%>
-                </li>
-                <li>
-                    first name: <%=usr.first_name%>
-                </li>
-                <li>
-                    last name: <%=usr.last_name%>
-                </li>
+    <body style="background-color:lightgrey;">
+            <h2>
+                Pins in system
+            </h2>
+        <div class="border d-flex flex-row">
+            <%users.forEach(function(usr){%>
+            <div class="border">
+                <ul>
+                    <li>
+                        Id: <%=usr.user_id%>
+                    </li>
+                    <li>
+                        username: <%=usr.username%>
+                    </li>
                 
-            </ul>
-        
-        <%});%>
-    </div>
-
+                </ul>
+                
+                <ul>
+                    <li>
+                        pin <%=usr.pin_id%>
+                    </li>
+                    <li>
+                        user <%=usr.user%>
+                    </li>
+                    <li>
+                        state <%=usr.state_name%>
+                    </li>
+                    <li>
+                        city <%=usr.city%>
+                    </li>
+                    <li>
+                        is public
+    
+                        <%if( usr.is_public == 1){%>
+                            yes
+                        <%} else{%>
+                            no
+                        <%}%>
+                        
+                    </li>
+                    
+                </ul>
+            </div>
+            <%});%>
+        </div>
+    </body>
 </html>

@@ -322,13 +322,31 @@ app.post('/register', async function(req, res){
 
 app.get('/leAdmin', function(req, res) { // the admin, a little french
     
-    var stmt = "select * from users;";
-    connection.query(stmt, function(error, result){
-        if(error) throw error;
-        else{
-            res.render('leAdmin', {users: result});
+    try{
+        if(req.session.userInfo.is_admin){
+            var stmt = "select * from users inner join pins on users.user_id = pins.user;";
+            connection.query(stmt, function(error, result){
+                if(error) throw error;
+                else{
+                    res.render('leAdmin', {users: result});
+                }
+            });
         }
-    });
+        else{
+            res.redirect('/');
+        }
+    } catch(err){
+        res.redirect('/');
+    }
+    
+    // var stmt = "select * from users inner join pins on users.user_id = pins.user;";
+    // connection.query(stmt, function(error, result){
+    //     if(error) throw error;
+    //     else{
+    //         res.render('leAdmin', {users: result});
+    //     }
+    // });
+    
 });
 
 app.post('/create_pin', function(req, res) {
@@ -343,6 +361,8 @@ app.post('/create_pin', function(req, res) {
     
     let stmt = "insert into pins (user, state_name, city, is_public) values (?,?,?,?)";
     let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, is_admin_var];
+    
+    console.log("city ", req.body.city);
     
     console.log(data);
     
