@@ -150,11 +150,11 @@
                         Current State Information:
                         <form action="/leStateUpdate" method="POST">
                             
-                            Covid Case Count: <input name="count" value=<%=stt.covid_count%> ><br>
-                            Covid Death Count: <input name="death" value=<%=stt.covid_death%> ><br>
-                            Covid Death Trajectory: <input name="tra_death" value=<%=stt.trajectory_death%> > <br>
-                            Covid Hospitalization Trajectory: <input name="tra_hos" value=<%=stt.trajectory_hospitalize%> > <br>
-                            Covid Test Trajectory: <input name="tra_test" value=<%=stt.trajectory_test%> > <br>
+                            Covid Case Count: <input name="count" type="number" value=<%=stt.covid_count%> ><br>
+                            Covid Death Count: <input name="death" type="number" value=<%=stt.covid_death%> ><br>
+                            Covid Death Trajectory: <input name="tra_death" type="number" value=<%=stt.trajectory_death%> > <br>
+                            Covid Hospitalization Trajectory: <input name="tra_hos" type="number" value=<%=stt.trajectory_hospitalize%> > <br>
+                            Covid Test Trajectory: <input name="tra_test" type="number" value=<%=stt.trajectory_test%> > <br>
                             <input name="ab" type="hidden" value=<%=stt.state_ab%> >
                             <br>
                             <input type="submit" class="btn btn-info" value="Update State">
