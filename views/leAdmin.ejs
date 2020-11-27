@@ -2,20 +2,19 @@
 <html>
     <head>
         <%- include('templates/header')%>
-        
-        <script src="https://code.jquery.com/jquery.min.js"></script>
-        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <h1>Admin</h1>
     </head>
     
     <body style="background-color:lightgrey;">
+        <br>
         <h2>
             Pins in system
         </h2>
             
         <div class="border d-flex flex-row flex-wrap">
             <%users.forEach(function(usr){%>
-            <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; padding: 5px;">
+            <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; max-height: 450px; padding: 5px;">
                 <ul>
                     <li>
                         User Id: <%=usr.user_id%>
@@ -38,7 +37,6 @@
                     </li>
                     <li>
                         Is public:
-    
                         <%if( usr.is_public == 1){%>
                             yes
                         <%} else{%>
@@ -46,17 +44,133 @@
                         <%}%>
                         
                     </li>
-                    <li>
+                    <li id="description<%=usr.pin_id%>">
                         desc: <%=usr.description%>
                     </li>
                     
                 </ul>
-                <button onclick='tester(<%=usr.user_id%>)'>Test</button>
-                <button onclick='deletePin(<%=usr.pin_id%>)'>Delete Pin</button>
+                
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal<%=usr.pin_id%>">Modify</button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="editModal<%=usr.pin_id%>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<%=usr.pin_id%>" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel<%=usr.pin_id%>">Editing pin: <%=usr.pin_id%></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Creator data
+                        Id: <%=usr.user_id%><br>
+                        Username: <%=usr.username%><br>
+                        Full name: <%=usr.first_name%> <%=usr.last_name%><br>
+                        <%if( usr.is_public == 1){%>
+                            Is an Admin <br>
+                        <%}%>
+                        <br>
+                        Pin Data: <br>
+                        Pin location: <%=usr.city%>, <%=usr.state_name%> <br>
+                        Pin description:<br> <%=usr.description%><br>
+                        
+                        <!--to update the pin description-->
+                        <textarea id="textArea<%=usr.pin_id%>" name="w3review" rows="3" cols="50"></textarea>
+                        <button type="button" class="btn btn-primary" onclick="updateDesc(<%=usr.pin_id%>)" data-dismiss="modal"> Update Description </button>
+                        
+                        <button onclick='tester(<%=usr.user_id%>)'>Test</button>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger"onclick='deletePin(<%=usr.pin_id%>)' data-dismiss="modal">Delete Pin</button>
+                        
+                        <%if( usr.is_public == 1){%>
+                            <form action="/deleteUsr" method="POST">
+                            
+                                <input name="usrId" type="hidden" value=<%=usr.user_id%> >
+                                <input name="returnUrl" type="hidden" value="/leAdmin" >
+                                <input type="submit" class="btn btn-danger" value="Delete User">
+                            </form>
+                        <%} else{%>
+                            <button type="button" class="btn btn-info">Admins must self delete</button>
+                        <%}%>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
             </div>
             <%});%>
         </div>
-        
+        <br>
+        <h2>
+            States in System
+        </h2>
+        <div class="border d-flex flex-row flex-wrap">
+            <!--for loop the states here-->
+            <%states.forEach(function(stt){%>
+                <div id="wholeItem<%=stt.state_ab%>" class="border" style="max-width: 200px; padding: 5px;">
+                    <ul>
+                        <li>
+                            <%=stt.state_name%>, <%=stt.state_ab%>
+                        </li>
+                        Covid data:
+                        <li>
+                            Case Count: <%=stt.covid_count%>
+                        </li>
+                        <li>
+                            Death Count: <%=stt.covid_death%>
+                        </li>
+                    </ul>
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#stateModal<%=stt.state_ab%>">
+                      Modify
+                    </button>
+                    
+                </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="stateModal<%=stt.state_ab%>" tabindex="-1" aria-labelledby="stateModalLabel<%=stt.state_ab%>" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="stateModalLabel<%=stt.state_ab%>">Modifying <%=stt.state_name%>, <%=stt.state_ab%></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Current State Information:
+                        <form action="/leStateUpdate" method="POST">
+                            
+                            Covid Case Count: <input name="count" value=<%=stt.covid_count%> ><br>
+                            Covid Death Count: <input name="death" value=<%=stt.covid_death%> ><br>
+                            Covid Death Trajectory: <input name="tra_death" value=<%=stt.trajectory_death%> > <br>
+                            Covid Hospitalization Trajectory: <input name="tra_hos" value=<%=stt.trajectory_hospitalize%> > <br>
+                            Covid Test Trajectory: <input name="tra_test" value=<%=stt.trajectory_test%> > <br>
+                            <input name="ab" type="hidden" value=<%=stt.state_ab%> >
+                            <br>
+                            <input type="submit" class="btn btn-info" value="Update State">
+                            
+                        </form>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+            <%});%>
+        </div>
         
         <script SRC="javascript/powers.js"></script>
     </body>

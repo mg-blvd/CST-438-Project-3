@@ -26,3 +26,27 @@ function deletePin(id){
     });
     
 }
+
+function updateDesc(id){
+    $(document).ready(function(){
+        console.log("updating description time");
+        var desc = $("#textArea"+id).val();
+        
+        $.ajax({
+            method:  'GET',
+            url:     '/leUpdateDesc/' + id + '/'+ desc, // need to get a description
+            datatype:'json',
+            success: function(results){
+                console.log("success", results);
+                
+                $("#description" + id).html("desc: " + desc);
+                alert("the description was updated");
+            },
+            error: function(error){
+                console.log("error", error);
+                
+                alert("the description failed to update");
+            }
+        });
+    });
+}

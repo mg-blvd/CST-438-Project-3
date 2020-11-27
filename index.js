@@ -318,17 +318,24 @@ app.post('/register', async function(req, res){
         });
     }); 
 });
+
 //***************************************************************************
 
 app.get('/leAdmin', function(req, res) { // the admin, a little french
     
     try{
         if(req.session.userInfo.is_admin){
-            var stmt = "select * from users inner join pins on users.user_id = pins.user;";
-            connection.query(stmt, function(error, result){
-                if(error) throw error;
+            var stmt1 = "select * from users inner join pins on users.user_id = pins.user;";
+            connection.query(stmt1, function(error1, result1){
+                if(error1) throw error1;
                 else{
-                    res.render('leAdmin', {users: result});
+                    var stmt2 = "select * from states;";
+                    connection.query(stmt2, function(error2, result2) {
+                        if (error2) throw error2;
+                        
+                        res.render('leAdmin', {users: result1, states: result2})
+                    })
+                    // res.render('leAdmin', {users: result1});
                 }
             });
         }
@@ -355,6 +362,55 @@ app.get('/leDelete/:pinId', isAuthenticated, function(req, res) { // generic del
     });
     
 });
+
+app.get('/leUpdateDesc/:pindId/:desc', isAuthenticated, function(req, res) {
+    var stmt = "UPDATE pins SET description=? WHERE pin_id=?";
+    var data = [req.params.desc, req.params.pindId];
+    
+    connection.query(stmt, data, function(error, results) {
+        if (error) res.json({error: false});
+        else{
+            console.log("success at updating description", results);
+            res.json({results: true});
+        }
+    });
+});
+
+app.post('/deleteUsr', function(req, res) { // generic user delete
+    var stmt1 = "DELETE FROM pins WHERE user=?;";
+    var stmt2 = "DELETE FROM users WHERE user_id=?";
+    
+    // if(req.session.userInfo.user_id == req.body.usrId){ // can't self delete so...
+    //     res.redirect(req.body.returnUrl);
+    //     console.log("same id F");
+    //     return;
+    // }
+    
+    var data1 = [req.body.usrId];
+    connection.query(stmt1, data1, function(error1, results1) {
+        if (error1) throw error1;
+        
+        connection.query(stmt2,data1,function(error2, results2) {
+            if (error2) throw error2;
+            else{
+                res.redirect(req.body.returnUrl); /// could be a json response, if so then do jquery
+            }
+        });
+    });
+});
+
+app.post('/leStateUpdate', isAuthenticated, function(req, res) { /// returns json, uses form tho
+    var stmt = "UPDATE states SET covid_count=?, covid_death=?, trajectory_death=?, trajectory_hospitalize=?, trajectory_test=? WHERE state_ab=?;";
+    var data = [parseInt(req.body.count), parseInt(req.body.death), parseInt(req.body.tra_death), parseInt(req.body.tra_hos), parseInt(req.body.tra_test), req.body.ab];
+    
+    connection.query(stmt, data, function(error, results) {
+        if (error) throw error;
+        res.redirect("/leAdmin");
+    });
+    
+});
+//***************************************************************************
+
 
 app.post('/create_pin', function(req, res) {
     
