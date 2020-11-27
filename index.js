@@ -339,13 +339,20 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
         res.redirect('/');
     }
     
-    // var stmt = "select * from users inner join pins on users.user_id = pins.user;";
-    // connection.query(stmt, function(error, result){
-    //     if(error) throw error;
-    //     else{
-    //         res.render('leAdmin', {users: result});
-    //     }
-    // });
+});
+
+app.get('/leDelete/:pinId', isAuthenticated, function(req, res) { // generic delete end point
+    var stmt = "DELETE FROM pins WHERE pin_id=?";
+    var data = [req.params.pinId];
+    console.log("the pinId", req.params.pinId);
+    
+    connection.query(stmt, data, function(error, result) {
+        if (error) res.json({error: false});
+        else{
+            console.log("success at deleting", result);
+            res.json({result: true});
+        }
+    });
     
 });
 
@@ -359,11 +366,10 @@ app.post('/create_pin', function(req, res) {
         is_admin_var = true;
     }
     
-    let stmt = "insert into pins (user, state_name, city, is_public) values (?,?,?,?)";
-    let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, is_admin_var];
+    let stmt = "insert into pins (user, state_name, city, description, is_public) values (?,?,?,?,?)";
+    let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, req.body.desc, is_admin_var];
     
-    console.log("city ", req.body.city);
-    
+
     console.log(data);
     
     connection.query(stmt, data, function(error, results) {

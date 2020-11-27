@@ -33,6 +33,7 @@ create table pins (
   state_name  varchar(25),
   city        varchar(30),
   is_public   boolean,
+  description varchar(200),
   foreign key (user) references users(user_id)
 );
 

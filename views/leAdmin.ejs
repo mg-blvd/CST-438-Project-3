@@ -3,41 +3,41 @@
     <head>
         <%- include('templates/header')%>
         
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        
         <h1>Admin</h1>
     </head>
     
     <body style="background-color:lightgrey;">
-            <h2>
-                Pins in system
-            </h2>
-        <div class="border d-flex flex-row">
+        <h2>
+            Pins in system
+        </h2>
+            
+        <div class="border d-flex flex-row flex-wrap">
             <%users.forEach(function(usr){%>
-            <div class="border">
+            <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; padding: 5px;">
                 <ul>
                     <li>
-                        Id: <%=usr.user_id%>
+                        User Id: <%=usr.user_id%>
                     </li>
                     <li>
-                        username: <%=usr.username%>
+                        Username: <%=usr.username%>
                     </li>
                 
                 </ul>
                 
                 <ul>
                     <li>
-                        pin <%=usr.pin_id%>
+                        Pin Id: <%=usr.pin_id%>
                     </li>
                     <li>
-                        user <%=usr.user%>
+                        State: <%=usr.state_name%>
                     </li>
                     <li>
-                        state <%=usr.state_name%>
+                        City: <%=usr.city%>
                     </li>
                     <li>
-                        city <%=usr.city%>
-                    </li>
-                    <li>
-                        is public
+                        Is public:
     
                         <%if( usr.is_public == 1){%>
                             yes
@@ -46,10 +46,18 @@
                         <%}%>
                         
                     </li>
+                    <li>
+                        desc: <%=usr.description%>
+                    </li>
                     
                 </ul>
+                <button onclick='tester(<%=usr.user_id%>)'>Test</button>
+                <button onclick='deletePin(<%=usr.pin_id%>)'>Delete Pin</button>
             </div>
             <%});%>
         </div>
+        
+        
+        <script SRC="javascript/powers.js"></script>
     </body>
 </html>
