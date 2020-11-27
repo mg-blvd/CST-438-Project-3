@@ -66,7 +66,7 @@
                             
                             Aqius: <%=airQualityInfo.current.pollution.aqius%> <br>
                             
-                            (Aqius scale: 0 is healthy air quality, 500 is the hazardous air quality)
+                            (Aqius scale: 0 is healthy air quality, 500 is hazardous air quality)
                             
                             </h4>
                         
@@ -74,7 +74,7 @@
                                 <form action='/create_pin' method='POST'>
                                     <input name="userId" type="hidden" value=<%=user.user_id%> >
                                     <input name="stateName" type="hidden" value=<%=airQualityInfo.state%> >
-                                    <input name="city" type="hidden" value=<%=airQualityInfo.city%> >
+                                    <input name="city" type='hidden' value='<%=airQualityInfo.city%>' >
                                     <label>Pin this location?</label>
                                     <input type="submit" value="Click here!">
                                 </form>
