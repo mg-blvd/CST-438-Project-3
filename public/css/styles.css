@@ -204,3 +204,11 @@
 /*    padding: 0px;*/
 /*    margin: 0px;    */
 /*}*/
+
+
+
+
+
+.some_background{
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(24, 150, 58, 1));
+}
