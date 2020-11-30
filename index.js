@@ -507,8 +507,7 @@ current: {
 
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
-
-    res.render('home');
+    res.render('home', {isAuth : req.session.authenticated});
 });
 
 app.get('/*', function(req, res) {

@@ -18,7 +18,11 @@
                 <!--left side-->
                <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="#">  Should I Go There?</a></i>
                 <!--right side-->
-                <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/login">  Log In</a></i></li>
+                <% if(!isAuth) {%>
+                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/login">  Log In</a></i></li>
+                <%} else {%>
+                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/logout">  Log Out</a></i></li>
+                <% } %>
             </div>
         </nav>
         
