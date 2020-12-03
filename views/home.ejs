@@ -19,8 +19,10 @@
                 <!--left side-->
                 <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="/">  Should I Go There?</a></i>
                 <!--middle part-->
-                <% if(isAuth) {%>
+                <% if(state == 1) {%>
                     <i class="navLogos fas fa-user-cog"><a class="nav-brand" style="color:#000080" href="/leAdmin"> Admin </a></i>
+                <% } else if (state == 2) { %>
+                    <i class="navLogos fas fa-users"><a class="nav-brand" style="color:#000080" href="/leUser"> Users </a></i>
                 <% } %>
                 <!--right side-->
                 <% if(!isAuth) {%>

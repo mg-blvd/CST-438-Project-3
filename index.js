@@ -8,6 +8,7 @@ const cron = require('node-cron');
 
 var session = require('express-session');
 var bcrypt = require('bcrypt');
+var state = 0;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -188,6 +189,9 @@ function isAuthenticated(req, res, next){
     else next();
 }
 
+/*
+    The following functions check the validity of the inputted user information 
+*/
 
 function checkUsername(username){
     let stmt = 'SELECT * FROM users WHERE username=?';
@@ -270,12 +274,12 @@ app.post('/login', async function(req, res){
         req.session.userInfo = isUserExist[0];
         
         if (req.session.userInfo.is_admin) {
-            
+            state = 1;
             res.redirect('/leAdmin');
             
         } else {
-            
-            res.redirect('/');
+            state = 2;
+            res.redirect('/leUser');
         }
         
     }
@@ -287,6 +291,7 @@ app.post('/login', async function(req, res){
 /* Logout Route */
 app.get('/logout', function(req, res){
    req.session.destroy();
+   state = 0;
    res.redirect('/');
 });
 
@@ -356,10 +361,8 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
                     var stmt2 = "select * from states;";
                     connection.query(stmt2, function(error2, result2) {
                         if (error2) throw error2;
-                        
                         res.render('leAdmin', {users: result1, states: result2, isAuth: req.session.userInfo.is_admin})
                     })
-                    // res.render('leAdmin', {users: result1});
                 }
             });
         }
@@ -431,6 +434,32 @@ app.post('/leStateUpdate', isAuthenticated, function(req, res) { /// returns jso
         if (error) throw error;
         res.redirect("/leAdmin");
     });
+    
+});
+
+app.get('/leUser', function(req, res) { // the admin, a little french
+    
+    try{
+        if(!req.session.userInfo.is_admin){
+            var stmt1 = "select * from users inner join pins on users.user_id = pins.user;";
+            connection.query(stmt1, function(error1, result1){
+                if(error1) throw error1;
+                else{
+                    var id = req.session.userInfo.user_id;
+                    var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
+                    connection.query(stmt2, function(error2, data) {
+                        if (error2) throw error2;
+                        res.render('leUser', {data: data, isAuth: 2});
+                    })
+                }
+            });
+        }
+        else{
+            res.redirect('/');
+        }
+    } catch(err){
+        res.redirect('/');
+    }
     
 });
 //***************************************************************************
@@ -531,7 +560,9 @@ current: {
 
 app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
-    res.render('home', {isAuth : req.session.authenticated});
+    console.log(state);
+    console.log("=========================");
+    res.render('home', {isAuth : req.session.authenticated, state : state});
 });
 
 app.get('/*', function(req, res) {

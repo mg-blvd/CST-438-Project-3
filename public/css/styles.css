@@ -63,6 +63,14 @@
     font-size: 25px;
     font-weight: bolder;
 }
+.passBox {
+    font-size:19px;
+    font-weight: bolder;
+    padding: 20px;
+    max-width: 67%;
+    background-color: rgba(245, 250, 255, 0.3);
+    border-radius: .5em;
+}
 
 /*** HOME ejs file CSS ***/
 .home-background {
@@ -95,9 +103,6 @@
 .display-5 {
     font-size: 60px;
 }
-/*.col-md1 {*/
-/*    margin-top: 20px;*/
-/*}*/
 .col-md-2 {
     margin-top: 40px;
 }
@@ -136,7 +141,7 @@
 }
 
 
-/*** LEADMIN ejs file CSS ***/
+/*** LE_ADMIN ejs file CSS ***/
 .adminLogos {
     font-size: 30px;
     color: #A3BFFF;
@@ -182,6 +187,25 @@ h8 {
 }
 #wholeItem{
     padding: 500px;
+}
+
+
+/*** LE_USER ejs file CSS ***/
+.circle {
+    background-image: url("../img/covid.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    position: relative;
+    height: 40em;
+    width: 40em;
+}
+
+.info {
+    color: #fff;
+    text-align: center;
+    text-shadow:0 0 5px #00468E, 0 0 10px #00468E;    
+    padding-top: 35%;
 }
 
 /*div.productSm{*/
@@ -252,8 +276,5 @@ h8 {
 /*    padding: 0px;*/
 /*    margin: 0px;    */
 /*}*/
-
-
-
 
 

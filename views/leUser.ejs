@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('templates/header')%>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">        
+    </head>
+    
+    <body class="log-background">
+        <!--navigation bar-->
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #222831 ">
+            <div class="nav container">
+                <!--left side-->
+                <i class="adminLogos fas fa-map-signs"><a class="nav-brand" style="color:#D7E3FF" href="/">  Should I Go There?</a></i>
+                <!--right side-->
+                <li class="nav-item nav-link"><i class="adminLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#D7E3FF" href="/logout">  Log Out</a></i></li>
+            </div>
+        </nav>
+        
+        <div class="circle circled mx-auto d-block">
+            <div class="info">
+                <h1> User </h1>
+                <br>
+                <h3> First Name: <%= data[0].first_name%> </h3>
+                <h3> Last Name: <%= data[0].last_name%> </h3>
+                <h3> Username: <%= data[0].username%> </h3>
+            </div>
+        </div>
+        
+        <div>
+            <h1>Pin Information</h1>
+        </div>
+        
+        <script src="javascript/powers.js"></script>
+    </body>
+</html>
