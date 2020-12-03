@@ -159,6 +159,30 @@ function getCityInfo(city, state) {
     return Promise.all(promises);//copyright trademark chuy no one has this i made this, some guy named misa says he made this but i think hes crazy
 } 
 
+function getUserPins(userInfo) {
+    let stmt = "SELECT * FROM pins WHERE user = ?";
+    return new Promise(function(resolve, reject) {
+        connection.query(stmt, userInfo.user_id, function(error, results) {
+            if(error) reject(error);
+            resolve(results);
+        })
+    });
+}
+
+function getUserPinsWithAQ(userInfo) {
+    return new Promise((resolve, reject) => {
+        getUserPins(userInfo)
+        .then((pins) => {
+            var cityPromises = [];
+            pins.forEach((pin) => {
+                cityPromises.push(getCityInfo(pin.city, pin.state_name));
+            });
+            
+            Promise.all(cityPromises).then((results) => resolve(results));
+        });
+    });
+}
+
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
     else next();
