@@ -3,27 +3,32 @@
     <head>
         <%- include('templates/header')%>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">        
     </head>
     
-    <body style="background-color:lightgrey;">
-        <div class="container-fluid some_background">
-        <h1 class="display-3">Admin</h1>
+    <body class="log-background">
+        <!--navigation bar-->
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #222831 ">
+            <div class="nav container">
+                <!--left side-->
+                <i class="adminLogos fas fa-map-signs"><a class="nav-brand" style="color:#D7E3FF" href="/">  Should I Go There?</a></i>
+                <!--right side-->
+                <li class="nav-item nav-link"><i class="adminLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#D7E3FF" href="/logout">  Log Out</a></i></li>
+            </div>
+        </nav>
+        
+        <div class="some_background">
+            <h1 >Admin</h1>
         </div>
-    <!--<body>-->
-
-        <br>
-        <div class="container-fluid some_background">
-        <h2>
-            Pins in system
-        </h2>
-        <h5>
-            Admin do remember the policies of this WebApp
-        </h5>
+        
+        <div class="some_background">
+            <h2> Pins in system </h2>
+            <h5> Admin do remember the policies of this WebApp </h5>
         </div>
         
         <div class="border d-flex flex-row flex-wrap">
             <%users.forEach(function(usr){%>
-            <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; max-height: 450px; padding: 5px;">
+                <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; max-height: 450px; padding: 5px;">
                 <ul>
                     <li>
                         User Id: <%=usr.user_id%>
@@ -31,7 +36,6 @@
                     <li>
                         Username: <%=usr.username%>
                     </li>
-                
                 </ul>
                 
                 <ul>
@@ -56,9 +60,7 @@
                     <li id="description<%=usr.pin_id%>">
                         desc: <%=usr.description%>
                     </li>
-                    
                 </ul>
-                
                 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal<%=usr.pin_id%>">Modify</button>
@@ -74,24 +76,22 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        Creator data
-                        Id: <%=usr.user_id%><br>
-                        Username: <%=usr.username%><br>
-                        Full name: <%=usr.first_name%> <%=usr.last_name%><br>
-                        <%if( usr.is_public == 1){%>
-                            Is an Admin <br>
-                        <%}%>
-                        <br>
-                        Pin Data: <br>
-                        Pin location: <%=usr.city%>, <%=usr.state_name%> <br>
-                        Pin description:<br> <%=usr.description%><br>
-                        
-                        <!--to update the pin description-->
-                        <textarea id="textArea<%=usr.pin_id%>" name="w3review" rows="3" cols="50"></textarea>
-                        <button type="button" class="btn btn-primary" onclick="updateDesc(<%=usr.pin_id%>)" data-dismiss="modal"> Update Description </button>
-                        
-                        <button onclick='tester(<%=usr.user_id%>)'>Test</button>
-                        
+                            Creator data
+                            Id: <%=usr.user_id%><br>
+                            Username: <%=usr.username%><br>
+                            Full name: <%=usr.first_name%> <%=usr.last_name%><br>
+                            <%if( usr.is_public == 1){%>
+                                Is an Admin <br>
+                            <%}%>
+                            <!--<br>--> 
+                            Pin Data: <br>
+                            Pin location: <%=usr.city%>, <%=usr.state_name%> <br>
+                            Pin description:<br> <%=usr.description%><br>
+                            
+                            <!--to update the pin description-->
+                            <textarea id="textArea<%=usr.pin_id%>" name="w3review" rows="3" cols="50"></textarea>
+                            <button type="button" class="btn btn-primary" onclick="updateDesc(<%=usr.pin_id%>)" data-dismiss="modal"> Update Description </button>
+                            <button onclick='tester(<%=usr.user_id%>)'>Test</button>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -112,30 +112,23 @@
                     </div>
                   </div>
                 </div>
-                
-                
             </div>
             <%});%>
         </div>
-        <br>
-        <div class="container-fluid some_background">
-        <h2>
-            States in System
-        </h2>
-        <h5>
-            Admin do remember all data is not available, do try to <br> fill in any known, yet missing data.
-        </h5>
+
+        <div class="some_background">
+            <h2> States in System </h2>
+            <h5> Admin do remember all data is not available, do try to <br> fill in any known, yet missing data. </h5>
         </div>
+        
         <div class="border d-flex flex-row flex-wrap">
             <!--for loop the states here-->
             <%states.forEach(function(stt){%>
                 <div id="wholeItem<%=stt.state_ab%>" class="border" style="max-width: 200px; padding: 5px;">
+                    <center><h8><%=stt.state_name%>, <%=stt.state_ab%></h8></center>
+                    <br>
+                    <h8>Covid data:</h8>
                     <ul>
-                        <!--<li>-->
-                            <h8><%=stt.state_name%>, <%=stt.state_ab%></h8>
-                        <!--</li>-->
-                        <br>
-                        <h8>Covid data:</h8>
                         <li>
                             Case Count: <%=stt.covid_count%>
                         </li>
@@ -145,9 +138,11 @@
                     </ul>
                     
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#stateModal<%=stt.state_ab%>">
-                      Modify
-                    </button>
+                    <center>
+                        <button type="button" class="adminButton btn" data-toggle="modal" data-target="#stateModal<%=stt.state_ab%>">
+                          Modify
+                        </button>
+                    </center>
                     
                 </div>
                 
@@ -187,6 +182,6 @@
             <%});%>
         </div>
         
-        <script SRC="javascript/powers.js"></script>
+        <script src="javascript/powers.js"></script>
     </body>
 </html>

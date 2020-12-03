@@ -333,7 +333,7 @@ app.get('/leAdmin', function(req, res) { // the admin, a little french
                     connection.query(stmt2, function(error2, result2) {
                         if (error2) throw error2;
                         
-                        res.render('leAdmin', {users: result1, states: result2})
+                        res.render('leAdmin', {users: result1, states: result2, isAuth: req.session.userInfo.is_admin})
                     })
                     // res.render('leAdmin', {users: result1});
                 }

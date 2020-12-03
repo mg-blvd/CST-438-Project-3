@@ -136,6 +136,54 @@
 }
 
 
+/*** LEADMIN ejs file CSS ***/
+.adminLogos {
+    font-size: 30px;
+    color: #A3BFFF;
+}
+.some_background {
+    /*background-image: linear-gradient(to right, #ABECD7, #46CCCE);*/
+    text-align: center;
+    padding-top: 80px;
+}
+.adminButton {
+    font-family: 'Itim', cursive;
+    font-size: 17px;
+    padding:0.46em 1.6em;
+    text-decoration:none;
+    border:0.1em solid white;
+    border-radius: .5em;
+    color: white;
+    text-align:center;
+    transition: all 0.15s;
+    alignment-baseline: central;
+    background-color: #222831;
+}
+.adminButton:hover {
+    text-decoration: none;
+    border-width: 2px;
+    color: black;
+    background-color: white;
+    text-shadow: 0 0 2em white;
+    border-color:black;
+}
+.border {
+    font-family: 'Dosis', sans-serif;
+    font-size:19px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    margin: 50px;
+    border-radius: 1.5em;
+    background-color: rgba(245, 250, 255, 0.3);
+}
+h8 {
+    font-weight: lighter;
+    text-align: center;
+}
+#wholeItem{
+    padding: 500px;
+}
+
 /*div.productSm{*/
 /*    width: 25%;*/
 /*    box-shadow: 0px 5px 5px grey;*/
@@ -209,6 +257,3 @@
 
 
 
-.some_background{
-  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(24, 150, 58, 1));
-}
