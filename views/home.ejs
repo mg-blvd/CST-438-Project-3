@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
- <head>
+    <head>
     <%- include('templates/header')%>
-    <title>Should I Go There? Login</title>
+        <title>Should I Go There? Login</title>
+        
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!--navigation bar style-->
+        <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+        <!--rest of body style-->
+        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    </head>
     
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--navigation bar style-->
-    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
-    <!--rest of body style-->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
- </head>
     <body class="home-background">
         <!--navigation bar-->
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #52C1D5">
             <div class="nav container">
                 <!--left side-->
-               <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="#">  Should I Go There?</a></i>
+                <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="/">  Should I Go There?</a></i>
+                <!--middle part-->
+                <% if(state == 1) {%>
+                    <i class="navLogos fas fa-user-cog"><a class="nav-brand" style="color:#000080" href="/leAdmin"> Admin </a></i>
+                <% } else if (state == 2) { %>
+                    <i class="navLogos fas fa-users"><a class="nav-brand" style="color:#000080" href="/leUser"> Users </a></i>
+                <% } %>
                 <!--right side-->
                 <% if(!isAuth) {%>
                     <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/login">  Log In</a></i></li>
