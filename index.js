@@ -179,7 +179,13 @@ function getUserPinsWithAQ(userInfo) {
                 cityPromises.push(getCityInfo(pin.city, pin.state_name));
             });
             
-            Promise.all(cityPromises).then((results) => resolve(results));
+            Promise.all(cityPromises).then((results) => {
+                for(var i = 0; i < results.length; i++) {
+                    results[i].push(pins[i].pin_id);
+                }
+                
+                resolve(results);
+            });
         });
     });
 }
@@ -272,6 +278,7 @@ app.post('/login', async function(req, res){
     if(passwordMatch){
         req.session.authenticated = true;
         req.session.userInfo = isUserExist[0];
+        
         
         if (req.session.userInfo.is_admin) {
             state = 1;
@@ -449,7 +456,8 @@ app.get('/leUser', function(req, res) { // the admin, a little french
                     var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
                     connection.query(stmt2, function(error2, data) {
                         if (error2) throw error2;
-                        res.render('leUser', {data: data, isAuth: 2});
+                        getUserPinsWithAQ(req.session.userInfo)
+                        .then((result) => res.render('leUser', {data: data, isAuth: 2, pinData : result}));
                     })
                 }
             });
