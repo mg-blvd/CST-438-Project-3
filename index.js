@@ -449,7 +449,9 @@ app.post('/leStateUpdate', isAuthenticated, function(req, res) { /// returns jso
 app.get('/leUser', isAuthenticated, function(req, res) { // the admin, a little french
     
     
-    var stmt = "select * from pins where user=?";
+    var stmt = "select * from (select pins.pin_id, pins.user, pins.state_name," +
+    " pins.city, pins.description, states.covid_count, states.covid_death, states.trajectory_death, states.trajectory_hospitalize, states.trajectory_test" +
+    " from pins inner join states on pins.state_name=states.state_name) as joinedd where joinedd.user=?";
     var data = [req.session.userInfo.user_id];
     
     connection.query(stmt, data, function(error, results) {
