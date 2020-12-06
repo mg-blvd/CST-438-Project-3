@@ -457,7 +457,11 @@ app.get('/leUser', function(req, res) { // the admin, a little french
                     connection.query(stmt2, function(error2, data) {
                         if (error2) throw error2;
                         getUserPinsWithAQ(req.session.userInfo)
-                        .then((result) => res.render('leUser', {data: data, isAuth: 2, pinData : result}));
+                        .then((result) => { 
+                            console.log(result);
+                            res.render('leUser', {data: data, isAuth: 2, pinData : result});
+                        }
+                        );
                     })
                 }
             });
