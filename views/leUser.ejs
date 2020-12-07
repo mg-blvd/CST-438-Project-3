@@ -32,7 +32,8 @@
             <%pinData.forEach(function(pin){%>
                 <% pin_data = pin[2]%>
                 <% state_data = pin[0][0] %>
-                <% aq_data = pin[1].data; console.log(aq_data) %>
+                <% aq_data = pin[1].data %>
+                <% pin_rating = pin[3] %>
                 <div id="wholeItem<%=pin_data.pin_id%>">
                     <ul>
                         <!--<li>-->

@@ -161,13 +161,32 @@ function getCityInfo(city, state) {
 } 
 
 function getUserPins(userInfo) {
-    let stmt = "SELECT * FROM pins WHERE user = ?";
+    var stmt;
+    if(userInfo === "admin") {
+        stmt = "SELECT * FROM pins WHERE is_public = true";
+    } else {
+    stmt = "SELECT * FROM pins WHERE user = ?";
+    }
     return new Promise(function(resolve, reject) {
         connection.query(stmt, userInfo.user_id, function(error, results) {
             if(error) reject(error);
             resolve(results);
         })
     });
+}
+
+function givePinRating(pinInfoArray) {
+    var covidData = pinInfoArray[0][0];
+    var aqData = pinInfoArray[1].data.current.pollution;
+    
+    if(covidData.covid_count >= 500 || aqData.aqius >= 151) {
+        pinInfoArray.push(2);
+    } else if (covidData.covid_count >= 100 || aqData >= 51) {
+        pinInfoArray.push(1);
+    } else {
+        pinInfoArray.push(0);
+    }
+    
 }
 
 function getUserPinsWithAQ(userInfo) {
@@ -182,6 +201,9 @@ function getUserPinsWithAQ(userInfo) {
             Promise.all(cityPromises).then((results) => {
                 for(var i = 0; i < results.length; i++) {
                     results[i].push(pins[i]);
+                    console.log("Pin ", i);
+                    givePinRating(results[i]);
+                    console.log(results[i]);
                 }
                 
                 resolve(results);
@@ -189,6 +211,7 @@ function getUserPinsWithAQ(userInfo) {
         });
     });
 }
+
 
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
@@ -463,7 +486,7 @@ app.get('/leUser', isAuthenticated, function(req, res) { // the admin, a little 
     // });
     
     
-    req.session.userInfo.is_admin
+    req.session.userInfo.is_admin;
     try{
         if(!req.session.userInfo.is_admin){
             var id = req.session.userInfo.user_id;
@@ -473,7 +496,7 @@ app.get('/leUser', isAuthenticated, function(req, res) { // the admin, a little 
                 getUserPinsWithAQ(req.session.userInfo)
                 .then((result) => {
                     res.render('leUser', {user: data[0], isAuth: 2, pinData : result})});
-            })
+            });
         }
         else{
             res.redirect('/');
