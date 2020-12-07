@@ -201,9 +201,7 @@ function getUserPinsWithAQ(userInfo) {
             Promise.all(cityPromises).then((results) => {
                 for(var i = 0; i < results.length; i++) {
                     results[i].push(pins[i]);
-                    console.log("Pin ", i);
                     givePinRating(results[i]);
-                    console.log(results[i]);
                 }
                 
                 resolve(results);
@@ -606,7 +604,10 @@ app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
     console.log(state);
     console.log("=========================");
-    res.render('home', {isAuth : req.session.authenticated, state : state});
+    getUserPinsWithAQ("admin")
+    .then((result) => {
+       res.render('home', {isAuth : req.session.authenticated, state : state, pins : result}); 
+    });
 });
 
 app.get('/*', function(req, res) {

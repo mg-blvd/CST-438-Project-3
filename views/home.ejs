@@ -112,13 +112,18 @@
         <div class="container">
             <header class="jumbotron3 my-5">
                 <h1 class="display-5">Default Pins:</h1>
-                
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><i class="danger fas fa-map-marker-alt"></i><span class="space"></span>United States, South Carolina, Myrtle Beach, 69 AQI, 194K Covid Cases</li>
-                  <li class="list-group-item"><i class="yellow fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
-                  <li class="list-group-item"><i class="succes fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
-                  <li class="list-group-item"><i class="yellow fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
-                  <li class="list-group-item"><i class="danger fas fa-map-marker-alt"></i><span class="space"></span>Country, State, City, Air Quality Number, Covid Cases in State</li>
+                <% pins.forEach((pin) => { %>
+                    <% pin_data = pin[2]%>
+                    <% state_data = pin[0][0]%>
+                    <% aq_data = pin[1].data.current.pollution%>
+                    <% pin_rating = pin[3] %>
+                    <% message_color = ""; %>
+                    <% if(pin_rating == 2) {message_color = "danger fas fa-map-marker-alt"} %>
+                    <% if(pin_rating == 1) {message_color = "yellow fas fa-map-marker-alt"} %>
+                    <% if(pin_rating == 0) { message_color = "succes fas fa-map-marker-alt"} %>
+                    <li class="list-group-item"><i class="<%= message_color %>"></i><span class="space"></span>United States, <%= pin_data.state_name %>, <%= pin_data.city %>, <%= aq_data.aqius %> AQI, <%=state_data.covid_count %> Covid Cases</li>
+                <% }); %>
                 </ul>    
             </header>
         </div>
