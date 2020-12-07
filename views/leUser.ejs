@@ -21,16 +21,57 @@
             <div class="info">
                 <h1> User </h1>
                 <br>
-                <h3> First Name: <%= data[0].first_name%> </h3>
-                <h3> Last Name: <%= data[0].last_name%> </h3>
-                <h3> Username: <%= data[0].username%> </h3>
+                <h3> First Name: <%= user.first_name%> </h3>
+                <h3> Last Name: <%= user.last_name%> </h3>
+                <h3> Username: <%= user.username%> </h3>
             </div>
         </div>
         
+        <h1>Pin Information</h1>
         <div>
-            <h1>Pin Information</h1>
+            
+            <%pinData.forEach(function(pin){%>
+                <div id="wholeItem<%=pin.pin_id%>">
+                    <ul>
+                        <!--<li>-->
+                        <!--    <%=pin.pin_id%>-->
+                        <!--</li>-->
+                        
+                        <li>
+                            <%=pin.city%>
+                        </li>
+                        <li>
+                            <%=pin.state_name%>
+                        </li>
+                        <li id="description<%=pin.pin_id%>">
+                            <%=pin.description%>
+                        </li>
+                    </ul>
+                    
+                    <textArea id='textArea<%=pin.pin_id%>' rows="3" cols="50"><%=pin.description%></textArea>    <!-- maybe have it hidden before a button click or something -->
+                    
+                    <button type="button" class="btn btn-primary" onclick="updateDesc(<%=pin.pin_id%>)" > Update Description </button>
+
+                    <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin.pin_id%>)'>Delete Pin</button>
+                    
+                </div>
+            
+            <%})%>
         </div>
-        
+        <div>
+            <h2>
+                Do you want to delete your account?
+            </h2>
+            
+            <form action='/deleteUsr' method='POST'>
+                
+                <input name="usrId" type="hidden" value=<%=user.user_id%> >
+                <input name="returnUrl" type="hidden" value="/logout" >
+                <input type="submit" class="btn btn-danger" value="Delete User">
+                
+            </form>
+            
+        </div>
         <script src="javascript/powers.js"></script>
     </body>
 </html>

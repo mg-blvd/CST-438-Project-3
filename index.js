@@ -420,6 +420,8 @@ app.post('/deleteUsr', function(req, res) { // generic user delete
     //     return;
     // }
     
+    
+    
     var data1 = [req.body.usrId];
     connection.query(stmt1, data1, function(error1, results1) {
         if (error1) throw error1;
@@ -444,34 +446,46 @@ app.post('/leStateUpdate', isAuthenticated, function(req, res) { /// returns jso
     
 });
 
-app.get('/leUser', function(req, res) { // the admin, a little french
+app.get('/leUser', isAuthenticated, function(req, res) { // the admin, a little french
     
-    try{
-        if(!req.session.userInfo.is_admin){
-            var stmt1 = "select * from users inner join pins on users.user_id = pins.user;";
-            connection.query(stmt1, function(error1, result1){
-                if(error1) throw error1;
-                else{
-                    var id = req.session.userInfo.user_id;
-                    var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
-                    connection.query(stmt2, function(error2, data) {
-                        if (error2) throw error2;
-                        getUserPinsWithAQ(req.session.userInfo)
-                        .then((result) => { 
-                            console.log(result);
-                            res.render('leUser', {data: data, isAuth: 2, pinData : result});
-                        }
-                        );
-                    })
-                }
-            });
-        }
+    
+    var stmt = "select * from (select pins.pin_id, pins.user, pins.state_name," +
+    " pins.city, pins.description, states.covid_count, states.covid_death, states.trajectory_death, states.trajectory_hospitalize, states.trajectory_test" +
+    " from pins inner join states on pins.state_name=states.state_name) as joinedd where joinedd.user=?";
+    var data = [req.session.userInfo.user_id];
+    
+    connection.query(stmt, data, function(error, results) {
+        if (error) throw error;
         else{
-            res.redirect('/');
+            console.log(results);
+            res.render('leUser', {pinData: results, user: req.session.userInfo});
         }
-    } catch(err){
-        res.redirect('/');
-    }
+    });
+    
+    
+    // req.session.userInfo.is_admin
+    // try{
+    //     if(!req.session.userInfo.is_admin){
+    //         var stmt1 = "select * from users inner join pins on users.user_id = pins.user;";
+    //         connection.query(stmt1, function(error1, result1){
+    //             if(error1) throw error1;
+    //             else{
+    //                 var id = req.session.userInfo.user_id;
+    //                 var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
+    //                 connection.query(stmt2, function(error2, data) {
+    //                     if (error2) throw error2;
+    //                     getUserPinsWithAQ(req.session.userInfo)
+    //                     .then((result) => res.render('leUser', {data: data, isAuth: 2, pinData : result}));
+    //                 })
+    //             }
+    //         });
+    //     }
+    //     else{
+    //         res.redirect('/');
+    //     }
+    // } catch(err){
+    //     res.redirect('/');
+    // }
     
 });
 //***************************************************************************

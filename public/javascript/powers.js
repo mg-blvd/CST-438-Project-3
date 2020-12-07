@@ -1,3 +1,4 @@
+console.log("i'm here")
 function tester(something){
     console.log("YO, tester, IM HERE");
     console.log("THE something is ", something);
@@ -39,7 +40,7 @@ function updateDesc(id){
             success: function(results){
                 console.log("success", results);
                 
-                $("#description" + id).html("desc: " + desc);
+                $("#description" + id).html("new desc: " + desc);
                 alert("the description was updated");
             },
             error: function(error){
