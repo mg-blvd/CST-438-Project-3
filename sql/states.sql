@@ -5,7 +5,7 @@ insert into states(state_ab, covid_count, covid_death, trajectory_death, traject
 ('AR', 0, 0, 0, 0, 0, 'Arkansas'), 
 ('CA', 0, 0, 0, 0, 0, 'California'), 
 ('CO', 0, 0, 0, 0, 0, 'Colorado'), 
-('CT', 0, 0, 0, 0, 0, 'Conneticut'), 
+('CT', 0, 0, 0, 0, 0, 'Connecticut'), 
 ('DE', 0, 0, 0, 0, 0, 'Delaware'), 
 ('FL', 0, 0, 0, 0, 0, 'Florida'), 
 ('GA', 0, 0, 0, 0, 0, 'Georgia'), 
