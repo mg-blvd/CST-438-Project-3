@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <%- include('templates/header')%>
+        <%- include('templates/header')%>
         <title>Should I Go There? Login</title>
-        
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!--navigation bar style-->
-        <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
         <!--rest of body style-->
         <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     </head>
     
     <body class="home-background">
         <!--navigation bar-->
-        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #52C1D5">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #9B1616">
             <div class="nav container">
                 <!--left side-->
-                <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#000080" href="/">  Should I Go There?</a></i>
+                <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color: #fff" href="/">  Should I Go There?</a></i>
                 <!--middle part-->
                 <% if(state == 1) {%>
-                    <i class="navLogos fas fa-user-cog"><a class="nav-brand" style="color:#000080" href="/leAdmin"> Admin </a></i>
+                    <i class="navLogos fas fa-user-cog"><a class="nav-brand" style="color:#fff" href="/leAdmin"> Admin </a></i>
                 <% } else if (state == 2) { %>
-                    <i class="navLogos fas fa-users"><a class="nav-brand" style="color:#000080" href="/leUser"> Users </a></i>
+                    <i class="navLogos fas fa-users"><a class="nav-brand" style="color:#fff" href="/leUser"> Users </a></i>
                 <% } %>
                 <!--right side-->
                 <% if(!isAuth) {%>
-                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/login">  Log In</a></i></li>
+                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#fff" href="/login">  Log In</a></i></li>
                 <%} else {%>
-                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#000080" href="/logout">  Log Out</a></i></li>
+                    <li class="nav-item nav-link"><i class="navLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#fff" href="/logout">  Log Out</a></i></li>
                 <% } %>
             </div>
         </nav>
@@ -101,7 +100,7 @@
                             <input type="search" class="form-control" name="inputSearch" id="inputSearch" placeholder="Select a city... Ex. Salinas">
                         </div>
                         <div class="form-group col-md-2">
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                        <button class="btn btn-outline-light" type="submit">Search</button>
                         </div>
                     </div>
                 </form>

@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Register Page</title>
         <%- include('templates/header')%>
-        <!--button styling-->
+        <title>Register Page</title>
+        <!--navigation bar style-->
+        <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+        <!--rest of body style-->
         <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     </head>
     
     <body class="log-background">
         <div class='jumbotron'>
-            <h1 class='text-center' id="sitename">Register for your own <br> Should I Go There?</h1>
-        </div>
-        <% if(issue !== "none") { %>
-            <p id='createAccountError' class='alert alert-secondary' role='alert'><%= issue %></p>
-        <% } %>
-        <form action='/register' method='POST' style='margin-left:25%;'>
-            <div class='form-row'>
-                <div class='form-group col-md-4'>
-                    <label for='username'>Username: </label>
-                    <input type='text' id='username' name='username' class='form-control' placeholder="Ex. newUser123" required>
-                </div>
-            </div>
-            <div class='form-row'>
-                <div class='form-group col-md-4'>
-                    <label for='firstname'>First Name: </label>
-                    <input type='text' id='firstname' name='firstname' class='form-control' placeholder='Ex. Bob' required>
-                </div>
-                <div class='form-group col-md-4'>
-                    <label for='lastname'>Last Name: </label>
-                    <input type='text' id='lastname' name='lastname' class='form-control' placeholder='Ex. Smith' required>
-                </div>
-            </div>
-            <div class='form-row'>
-                <div class='form-group col-md-4'>
-                    <label for='password'>Your password:</label>
-                    <input type='password' id='password' name='password' class='form-control' placeholder='password' required>
-                </div>
-                <div class='form-group col-md-4'>
-                    <label for='passwordConfirm'>Confirm password:</label>
-                    <input type='password' id='passwordConfirm' name='passwordConfirm' class='form-control' placeholder='password' required>
-                </div>
-            </div>
-            <div class="passBox form-row">
-                Password must:
-                <ul>
-                    <li>Include at least one letter (a-z, A-Z)</li>
-                    <li>Include at least one number (0-9)</li>
-                    <li>Include at least one special character (!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?)</li>
-                </ul>
-            </div>
+            <h1 class='text-center' id="sitename">
+                Should I Go There? <br> 
+                <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Register 
+            </h1>
             <br>
-            <button type='submit' class='bottomButton btn'>Register!</button>
-        </form>
-        <br>
-        <a href='/'>
-            <button  class='bottomButton btn' style='margin-left:25%'>Go Back Home</button>
-        </a>
+            <div class="row d-flex justify-content-center">
+                <a href='/' class='button'> Go Back Home </a>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <% if(issue !== "none") { %>
+                <p id='createAccountError' class='alert alert-secondary' role='alert'><%= issue %></p>
+            <% } %>
+            <form action='/register' method='POST' style='margin-left:25%;'>
+                <div class='form-row'>
+                    <div class='form-group col-md-4'>
+                        <label for='username'>Username: </label>
+                        <input type='text' id='username' name='username' class='form-control' placeholder="Ex. newUser123" required>
+                    </div>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group col-md-4'>
+                        <label for='firstname'>First Name: </label>
+                        <input type='text' id='firstname' name='firstname' class='form-control' placeholder='Ex. Bob' required>
+                    </div>
+                    <div class='form-group col-md-4'>
+                        <label for='lastname'>Last Name: </label>
+                        <input type='text' id='lastname' name='lastname' class='form-control' placeholder='Ex. Smith' required>
+                    </div>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group col-md-4'>
+                        <label for='password'>Your password:</label>
+                        <input type='password' id='password' name='password' class='form-control' placeholder='******' required>
+                    </div>
+                    <div class='form-group col-md-4'>
+                        <label for='passwordConfirm'>Confirm password:</label>
+                        <input type='password' id='passwordConfirm' name='passwordConfirm' class='form-control' placeholder='******' required>
+                    </div>
+                </div>
+                <div class="passBox form-row">
+                    Password must:
+                    <ul>
+                        <li>Include at least one letter (a-z, A-Z)</li>
+                        <li>Include at least one number (0-9)</li>
+                        <li>Include at least one special character (!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?)</li>
+                    </ul>
+                </div>
+                <br>
+                <button type='submit' class='button btn'>Register!</button>
+            </form>
+            
+        </div> <!-- container div -->
     </body>
 
 </html>
