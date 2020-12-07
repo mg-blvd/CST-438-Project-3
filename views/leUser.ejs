@@ -29,30 +29,32 @@
         
         <h1>Pin Information</h1>
         <div>
-            
             <%pinData.forEach(function(pin){%>
-                <div id="wholeItem<%=pin.pin_id%>">
+                <% pin_data = pin[2]%>
+                <% state_data = pin[0][0] %>
+                <% aq_data = pin[1].data; console.log(aq_data) %>
+                <div id="wholeItem<%=pin_data.pin_id%>">
                     <ul>
                         <!--<li>-->
-                        <!--    <%=pin.pin_id%>-->
+                        <!--    <%=pin_data.pin_id%>-->
                         <!--</li>-->
                         
                         <li>
-                            <%=pin.city%>
+                            <%=pin_data.city%>
                         </li>
                         <li>
-                            <%=pin.state_name%>
+                            <%=pin_data.state_name%>
                         </li>
-                        <li id="description<%=pin.pin_id%>">
-                            <%=pin.description%>
+                        <li id="description<%=pin_data.pin_id%>">
+                            <%=pin_data.description%>
                         </li>
                     </ul>
                     
-                    <textArea id='textArea<%=pin.pin_id%>' rows="3" cols="50"><%=pin.description%></textArea>    <!-- maybe have it hidden before a button click or something -->
+                    <textArea id='textArea<%=pin_data.pin_id%>' rows="3" cols="50"><%=pin_data.description%></textArea>    <!-- maybe have it hidden before a button click or something -->
                     
-                    <button type="button" class="btn btn-primary" onclick="updateDesc(<%=pin.pin_id%>)" > Update Description </button>
+                    <button type="button" class="btn btn-primary" onclick="updateDesc(<%=pin_data.pin_id%>)" > Update Description </button>
 
-                    <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin.pin_id%>)'>Delete Pin</button>
+                    <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin_data.pin_id%>)'>Delete Pin</button>
                     
                 </div>
             
