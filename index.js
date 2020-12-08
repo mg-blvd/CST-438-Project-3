@@ -517,6 +517,7 @@ app.post('/create_pin', function(req, res) {
         is_admin_var = true;
     }
     
+    
     let stmt = "insert into pins (user, state_name, city, description, is_public) values (?,?,?,?,?)";
     let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, req.body.desc, is_admin_var];
     
