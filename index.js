@@ -611,9 +611,15 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/map', (req, res) => {
+   console.log("In map page");
+   res.render('map');
+});
+
 app.get('/*', function(req, res) {
    res.send("This page doesn't exits!"); 
 });
+
 
 app.listen(process.env.PORT || 3000, function(){
     console.log('Server started');
