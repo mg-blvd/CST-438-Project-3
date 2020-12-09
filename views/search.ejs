@@ -98,6 +98,7 @@
             <% } %>
     </body>
     
+    <% if(airQualitySuccess == "success") { %>
     <script type="text/javascript">
       var coords = [<%= airQualityInfo.location.coordinates %>];
       console.log(coords);
@@ -114,5 +115,5 @@
         })
       });
     </script>
-
+    <% } %>
 </html>
