@@ -161,32 +161,13 @@ function getCityInfo(city, state) {
 } 
 
 function getUserPins(userInfo) {
-    var stmt;
-    if(userInfo === "admin") {
-        stmt = "SELECT * FROM pins WHERE is_public = true";
-    } else {
-    stmt = "SELECT * FROM pins WHERE user = ?";
-    }
+    let stmt = "SELECT * FROM pins WHERE user = ?";
     return new Promise(function(resolve, reject) {
         connection.query(stmt, userInfo.user_id, function(error, results) {
             if(error) reject(error);
             resolve(results);
         })
     });
-}
-
-function givePinRating(pinInfoArray) {
-    var covidData = pinInfoArray[0][0];
-    var aqData = pinInfoArray[1].data.current.pollution;
-    
-    if(covidData.covid_count >= 500 || aqData.aqius >= 151) {
-        pinInfoArray.push(2);
-    } else if (covidData.covid_count >= 100 || aqData >= 51) {
-        pinInfoArray.push(1);
-    } else {
-        pinInfoArray.push(0);
-    }
-    
 }
 
 function getUserPinsWithAQ(userInfo) {
@@ -200,8 +181,7 @@ function getUserPinsWithAQ(userInfo) {
             
             Promise.all(cityPromises).then((results) => {
                 for(var i = 0; i < results.length; i++) {
-                    results[i].push(pins[i]);
-                    givePinRating(results[i]);
+                    results[i].push(pins[i].pin_id);
                 }
                 
                 resolve(results);
@@ -209,7 +189,6 @@ function getUserPinsWithAQ(userInfo) {
         });
     });
 }
-
 
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
@@ -470,38 +449,43 @@ app.post('/leStateUpdate', isAuthenticated, function(req, res) { /// returns jso
 app.get('/leUser', isAuthenticated, function(req, res) { // the admin, a little french
     
     
-    // var stmt = "select * from (select pins.pin_id, pins.user, pins.state_name," +
-    // " pins.city, pins.description, states.covid_count, states.covid_death, states.trajectory_death, states.trajectory_hospitalize, states.trajectory_test" +
-    // " from pins inner join states on pins.state_name=states.state_name) as joinedd where joinedd.user=?";
-    // var data = [req.session.userInfo.user_id];
+    var stmt = "select * from (select pins.pin_id, pins.user, pins.state_name," +
+    " pins.city, pins.description, states.covid_count, states.covid_death, states.trajectory_death, states.trajectory_hospitalize, states.trajectory_test" +
+    " from pins inner join states on pins.state_name=states.state_name) as joinedd where joinedd.user=?";
+    var data = [req.session.userInfo.user_id];
     
-    // connection.query(stmt, data, function(error, results) {
-    //     if (error) throw error;
-    //     else{
-    //         console.log(results);
-    //         res.render('leUser', {pinData: results, user: req.session.userInfo});
-    //     }
-    // });
-    
-    
-    req.session.userInfo.is_admin;
-    try{
-        if(!req.session.userInfo.is_admin){
-            var id = req.session.userInfo.user_id;
-            var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
-            connection.query(stmt2, function(error2, data) {
-                if (error2) throw error2;
-                getUserPinsWithAQ(req.session.userInfo)
-                .then((result) => {
-                    res.render('leUser', {user: data[0], isAuth: 2, pinData : result})});
-            });
-        }
+    connection.query(stmt, data, function(error, results) {
+        if (error) throw error;
         else{
-            res.redirect('/');
+            console.log(results);
+            res.render('leUser', {pinData: results, user: req.session.userInfo});
         }
-    } catch(err){
-        res.redirect('/');
-    }
+    });
+    
+    
+    // req.session.userInfo.is_admin
+    // try{
+    //     if(!req.session.userInfo.is_admin){
+    //         var stmt1 = "select * from users inner join pins on users.user_id = pins.user;";
+    //         connection.query(stmt1, function(error1, result1){
+    //             if(error1) throw error1;
+    //             else{
+    //                 var id = req.session.userInfo.user_id;
+    //                 var stmt2 = "select user_id, first_name, last_name, username from users where users.user_id = " + id;
+    //                 connection.query(stmt2, function(error2, data) {
+    //                     if (error2) throw error2;
+    //                     getUserPinsWithAQ(req.session.userInfo)
+    //                     .then((result) => res.render('leUser', {data: data, isAuth: 2, pinData : result}));
+    //                 })
+    //             }
+    //         });
+    //     }
+    //     else{
+    //         res.redirect('/');
+    //     }
+    // } catch(err){
+    //     res.redirect('/');
+    // }
     
 });
 //***************************************************************************
@@ -516,7 +500,6 @@ app.post('/create_pin', function(req, res) {
     } else {
         is_admin_var = true;
     }
-    
     
     let stmt = "insert into pins (user, state_name, city, description, is_public) values (?,?,?,?,?)";
     let data = [parseInt(req.body.userId), req.body.stateName, req.body.city, req.body.desc, is_admin_var];
@@ -605,10 +588,7 @@ app.get('/', function(req, res) {
     console.log("The Current time is " + new Date); // see server time
     console.log(state);
     console.log("=========================");
-    getUserPinsWithAQ("admin")
-    .then((result) => {
-       res.render('home', {isAuth : req.session.authenticated, state : state, pins : result}); 
-    });
+    res.render('home', {isAuth : req.session.authenticated, state : state});
 });
 
 app.get('/map', (req, res) => {
