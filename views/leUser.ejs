@@ -65,10 +65,8 @@
                                     Description: <%=pin_data.description%>
                                 </h6>
                                 
-                                <button class="btn btn-primary" onclick="showDesc()">Try it</button>
-                                <!--<span id="descHide"></span>-->
-                                <textArea id='textArea<%=pin_data.pin_id%>' rows='3' cols='50'><%=pin_data.description%></textArea>";
-                                <button type='button' class='btn btn-primary' onclick='updateDesc(<%=pin_data.pin_id%>)' > Update Description </button>";
+                                <textArea id='textArea<%=pin_data.pin_id%>' rows='3' cols='50'><%=pin_data.description%></textArea>
+                                <button type='button' class='btn btn-primary' onclick='updateDesc(<%=pin_data.pin_id%>)' > Update Description </button>
                                 
                                 <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin_data.pin_id%>)'>Delete Pin</button>
                             </div>
