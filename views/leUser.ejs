@@ -37,22 +37,29 @@
                         <%pinData.forEach(function(pin){%>
                             <% pin_data = pin[2]%>
                             <% state_data = pin[0][0] %>
-                            <% aq_data = pin[1].data.pollution %>
+                            <% aq_data = pin[1].data.current.pollution.aqius;%>
                             <% pin_rating = pin[3] %>
                             <div id="wholeItem<%=pin_data.pin_id%>">
                                 <h3><%=pin_data.city%>, <%=pin_data.state_name%> (<%=state_data.state_ab%>)</h3>
-                                <h6>
+                                <!-- <h6>
                                     Pin public? 
                                     <% if(pin_data.is_public == 0) { %> No
                                     <% } else { %> Yes <% } %>
+                                </h6> -->
+                                
+                                <h6>New Covid Cases: <%= state_data.covid_count %> </h6>
+                                <h6>New Covid Deaths: <%= state_data.covid_death %> </h6>
+                                <h6>New People Hospitalized: <%= state_data.trajectory_hospitalize %> </h6>
+                                <h6>New Covid Tests: <%= state_data.trajectory_test %> </h6>
+                                <h6>Current Air Quality: <%= aq_data %>
+                                    <%if(aq_data >= 0 && aq_data <= 50) { %>
+                                        (healthy)
+                                    <% } else if(aq_data <= 500) {%>
+                                        (sensitive groups beware)
+                                    <% } else { %>
+                                        (unhealthy)
+                                    <% } %>
                                 </h6>
-                                
-                                <h6>Covid Count: <%= state_data.covid_count %> </h6>
-                                <h6>Covid Deaths: <%= state_data.covid_death %> </h6>
-                                <h6>Covid Trajectory Deaths: <%= state_data.trajectory_death %> </h6>
-                                <h6>Covid Trajectory Hospitalized: <%= state_data.trajectory_hospitalize %> </h6>
-                                <h6>Covid Trajectory Tested: <%= state_data.trajectory_test %> </h6>
-                                
                                 
                                 <h6 id="description<%=pin_data.pin_id%>">
                                     Description: <%=pin_data.description%>
