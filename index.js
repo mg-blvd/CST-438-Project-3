@@ -115,8 +115,8 @@ function updateStatesTable() {
     that will have multiple update statemts with all the new information we gathered from the API. 
 */
 function sendStatesDataToDB(result) {
-    let stmt = "UPDATE states SET covid_death = ?, covid_count = ?, trajectory_hospitalize = ? " +
-               "WHERE state_ab = ?;";
+    let stmt = "UPDATE states SET covid_death = ?, covid_count = ?, trajectory_hospitalize = ?, " +
+               " trajectory_test = ? WHERE state_ab = ?;";
     var query = "";
     var data = [];
    
@@ -125,6 +125,7 @@ function sendStatesDataToDB(result) {
             data.push(singleState.deathIncrease);
             data.push(singleState.positiveIncrease);
             data.push(singleState.hospitalizedIncrease);
+            data.push(singleState.totalTestResultsIncrease);
             data.push(singleState.state);
         });
         

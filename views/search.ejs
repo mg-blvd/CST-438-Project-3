@@ -5,33 +5,23 @@
     
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--navigation bar style-->
-    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
-    <!--rest of body style-->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
-    <style>
-      .map {
-        height: 50%;
-        width: 100%;
-      }
-    </style>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
     
  </head>
  
-    <body>
+    <body class="error_background">
         <% if(!(airQualitySuccess == "success")) { %>
                 
-                <div class"container">
+                <div class="container">
                     
                     <div class="row">
                         
-                        <div class="col" style="padding-top:20%; padding-left:15%;">
+                        <div class="col" style="padding-top:20%;">
                             
-                            <h2 class="display-5"> The location was not found! Try again </h2> <br>
+                            <center><h2 class="display-5"> The location was not found! Try again </h2> <br>
                             
-                            <a href='/'><button>Home</button></a>
+                            <a href='/'><button class="search_button">Home</button></a></center>
                         
                         </div>
                         
@@ -40,33 +30,33 @@
                 </div>
                 
             <% } else { %>
+                <div class="jumbotron search">
+                    <h1 class="text-center" id="search_sitename">
+                        <%=airQualityInfo.country%>, <%=airQualityInfo.state%> (<%=covidInfo.state_ab%>)
+                    </h1>
+                    
+                    <h1 class="text-center" id="sitename">
+                        <%=airQualityInfo.city%>
+                    </h1>
+                </div>
+                
                 <div class="container">
-                    <div class="row">
-                        
+                    <div class="row">   
                         <div class="col">
-                            <h2 class="display-5"><%=airQualityInfo.country%>, <%=airQualityInfo.state%> (<%=covidInfo.state_ab%>)
-                            
-                            <br>
-                            
-                            <%=airQualityInfo.city%>
-                            
-                            </h2>
-                             <div id="map" class="map"></div>
+                            <div id="map" class="map"></div>
                         </div>
                     
-                        <div class="col" style="padding-top:20%;">
+                        <div class="col border">
                             
                             <h4 id="covidCases"><u><i>Covid Cases for <%=airQualityInfo.state%></i></u> <br>
                             
-                            Covid Count: <%=covidInfo.covid_count%> <br>
+                            New Cases: <%=covidInfo.covid_count%> <br>
                             
-                            Covid Deaths: <%=covidInfo.covid_death%> <br>
+                            New Deaths: <%=covidInfo.covid_death%> <br>
                             
-                            Covid Trajectory Deaths: <%=covidInfo.trajectory_death%> <br>
+                            New Hospitalized: <%=covidInfo.trajectory_hospitalize%> <br>
                             
-                            Covid Trajectory Hospitalized: <%=covidInfo.trajectory_hospitalize%> <br>
-                            
-                            Covid Trajectory Tested: <%=covidInfo.trajectory_test%> <br>
+                            Test Increase: <%=covidInfo.trajectory_test%> <br>
                             
                             </h4>
                             
@@ -86,11 +76,10 @@
                                     <input name="stateName" type="hidden" value=<%=airQualityInfo.state%> >
                                     <input name="city" type='hidden' value='<%=airQualityInfo.city%>' >
                                     <label>Pin this location?</label>
-                                    <input name="desc">
-                                    <input type="submit" value="Click here!">
+                                    <input name="desc" placeholder="Ex. My Home"><input type="submit" value="Click here!">
                                 </form>
                             <% }else{ %>
-                                <a href='/login'><button>Login or register to pin this location!</button></a>
+                                <a href='/login'><button class="search_button">Login or register to pin this location!</button></a>
                             <% } %>
                         </div>
                     </div>

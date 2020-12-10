@@ -51,3 +51,22 @@ function updateDesc(id){
         });
     });
 }
+
+function showDesc() {
+    var line1 = "<textArea id='textArea<%=pin_data.pin_id%>' rows='3' cols='50'><%=pin_data.description%></textArea>";
+    var line2 = "<button type='button' class='btn btn-primary' onclick='updateDesc(<%=pin_data.pin_id%>)' > Update Description </button>";
+    var desc = document.getElementById("descHide");
+    if (desc.style.display === "none") {
+        // display
+        desc.style.display = "block";
+        desc.innerHTML = line1;
+        desc.innerHTML += line2;
+        // document.getElementById("demo").innerHTML += line2;
+        // console.log("display");
+    } else {
+        // hides
+        desc.style.display = "none";
+        // $("descHide").hide(1000);
+        // console.log("hides");
+    }
+}

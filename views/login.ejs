@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-
 <html>
-
- <head>
-    <%- include('templates/header')%>
-    
-    <title>Should I Go There? Login</title>
-    
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--button styling-->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">    
- </head>
+	<head>
+		<%- include('templates/header')%>
+		<title>Should I Go There? Login</title>
+		<script src="https://code.jquery.com/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+	</head>
  
 	<body class="log-background">
 		<div class='jumbotron'>
@@ -21,7 +15,7 @@
         	</h1>
     		<br>
 			<div class="row d-flex justify-content-center">
-				<a href="/" class="topButton">Home</a>
+				<a href="/" class="button">Home</a>
 			</div>
 		</div>
 			
@@ -40,11 +34,11 @@
 				<div class='form-group row'>
 					<label for='password' class='col-sm-4 col-form-label txt-align-rght'>Password</label>
 					<div class='col-sm-4'>
-						<input type='password' class='form-control' id='password' name='password' placeholder='****' required>
+						<input type='password' class='form-control' id='password' name='password' placeholder='******' required>
 					</div>
 				</div>
 				<div class="row d-flex justify-content-center">
-					<button class="bottomButton" >Login</button>
+					<button class="button" >Login</button>
 				</div>
 			</form>
 			
@@ -62,10 +56,9 @@
 				</div>
 				
 				<div class="row">
-					<a href="/register" class="bottomButton col-2 offset-5">Sign up here!</a>
+					<a href="/register" class="button col-2 offset-5">Sign up here!</a>
 				</div>
 			</div>
-			
-		</div>
+		</div>	<!-- container div -->
 	</body>
 </html>

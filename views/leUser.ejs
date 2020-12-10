@@ -3,77 +3,96 @@
     <head>
         <%- include('templates/header')%>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">        
+        <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     </head>
     
-    <body class="log-background">
+    <body class="admin_background">
         <!--navigation bar-->
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #222831 ">
             <div class="nav container">
                 <!--left side-->
-                <i class="adminLogos fas fa-map-signs"><a class="nav-brand" style="color:#D7E3FF" href="/">  Should I Go There?</a></i>
+                <i class="fas fa-map-signs" style="font-size:30px; color:#44d7a8;"><a class="nav-brand" style="color:#fff" href="/">  Should I Go There?</a></i>
                 <!--right side-->
-                <li class="nav-item nav-link"><i class="adminLogos fas fa-sign-in-alt"><a class="nav-item" style="color:#D7E3FF" href="/logout">  Log Out</a></i></li>
+                <li class="nav-item nav-link"><i class="fas fa-sign-out-alt" style="font-size:30px; color:#44d7a8;"><a class="nav-item" style="color:#fff" href="/logout">  Log Out</a></i></li>
             </div>
         </nav>
         
-        <div class="circle circled mx-auto d-block">
-            <div class="info">
-                <h1> User </h1>
-                <br>
-                <h3> First Name: <%= user.first_name%> </h3>
-                <h3> Last Name: <%= user.last_name%> </h3>
-                <h3> Username: <%= user.username%> </h3>
-            </div>
+        <div class="container">
+            <div class="row" style="margin-top:10%;">
+                <!--left side user -->
+                <div class="col user">
+                    <center>
+                        <i class="fas fa-user-circle"></i>
+                        <h1> User </h1>
+                        <br>
+                        <h3> First Name: <%= user.first_name%> </h3>
+                        <h3> Last Name: <%= user.last_name%> </h3>
+                        <h3> Username: <%= user.username%> </h3>
+                    </center>
+                </div>
+                <!--right side pins -->
+                <div class="col">
+                    <h1>Pin Information</h1>
+                    <div>
+                        <%pinData.forEach(function(pin){%>
+                            <% pin_data = pin[2]%>
+                            <% state_data = pin[0][0] %>
+                            <% aq_data = pin[1].data.current.pollution.aqius;%>
+                            <% pin_rating = pin[3] %>
+                            <div id="wholeItem<%=pin_data.pin_id%>">
+                                <h3><%=pin_data.city%>, <%=pin_data.state_name%> (<%=state_data.state_ab%>)</h3>
+                                <!-- <h6>
+                                    Pin public? 
+                                    <% if(pin_data.is_public == 0) { %> No
+                                    <% } else { %> Yes <% } %>
+                                </h6> -->
+                                
+                                <h6>New Covid Cases: <%= state_data.covid_count %> </h6>
+                                <h6>New Covid Deaths: <%= state_data.covid_death %> </h6>
+                                <h6>New People Hospitalized: <%= state_data.trajectory_hospitalize %> </h6>
+                                <h6>New Covid Tests: <%= state_data.trajectory_test %> </h6>
+                                <h6>Current Air Quality: <%= aq_data %>
+                                    <%if(aq_data >= 0 && aq_data <= 50) { %>
+                                        (healthy)
+                                    <% } else if(aq_data <= 500) {%>
+                                        (sensitive groups beware)
+                                    <% } else { %>
+                                        (unhealthy)
+                                    <% } %>
+                                </h6>
+                                
+                                <h6 id="description<%=pin_data.pin_id%>">
+                                    Description: <%=pin_data.description%>
+                                </h6>
+                                
+                                <button class="btn btn-primary" onclick="showDesc()">Try it</button>
+                                <!--<span id="descHide"></span>-->
+                                <textArea id='textArea<%=pin_data.pin_id%>' rows='3' cols='50'><%=pin_data.description%></textArea>";
+                                <button type='button' class='btn btn-primary' onclick='updateDesc(<%=pin_data.pin_id%>)' > Update Description </button>";
+                                
+                                <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin_data.pin_id%>)'>Delete Pin</button>
+                            </div>
+                        
+                        <%})%>
+                    </div>  <!--pin data div-->
+                </div> <!-- col div -->
+            </div> <!-- row div -->
         </div>
         
-        <h1>Pin Information</h1>
         <div>
-            <%pinData.forEach(function(pin){%>
-                <% pin_data = pin[2]%>
-                <% state_data = pin[0][0] %>
-                <% aq_data = pin[1].data.pollution %>
-                <% pin_rating = pin[3] %>
-                <div id="wholeItem<%=pin_data.pin_id%>">
-                    <ul>
-                        <!--<li>-->
-                        <!--    <%=pin_data.pin_id%>-->
-                        <!--</li>-->
-                        
-                        <li>
-                            <%=pin_data.city%>
-                        </li>
-                        <li>
-                            <%=pin_data.state_name%>
-                        </li>
-                        <li id="description<%=pin_data.pin_id%>">
-                            <%=pin_data.description%>
-                        </li>
-                    </ul>
-                    
-                    <textArea id='textArea<%=pin_data.pin_id%>' rows="3" cols="50"><%=pin_data.description%></textArea>    <!-- maybe have it hidden before a button click or something -->
-                    
-                    <button type="button" class="btn btn-primary" onclick="updateDesc(<%=pin_data.pin_id%>)" > Update Description </button>
-
-                    <button type="button" class="btn btn-danger" onclick='deletePin(<%=pin_data.pin_id%>)'>Delete Pin</button>
-                    
-                </div>
-            
-            <%})%>
-        </div>
-        <div>
-            <h2>
-                Do you want to delete your account?
-            </h2>
-            
-            <form action='/deleteUsr' method='POST'>
+            <center>
+                <h2>
+                    Do you want to delete your account?
+                </h2>
                 
-                <input name="usrId" type="hidden" value=<%=user.user_id%> >
-                <input name="returnUrl" type="hidden" value="/logout" >
-                <input type="submit" class="btn btn-danger" value="Delete User">
-                
-            </form>
-            
+                <form action='/deleteUsr' method='POST'>
+                    
+                    <input name="usrId" type="hidden" value=<%=user.user_id%> >
+                    <input name="returnUrl" type="hidden" value="/logout" >
+                    <input type="submit" class="btn btn-danger btn-lg" value="Delete User">
+                    
+                </form>
+            </center>
         </div>
         <script src="javascript/powers.js"></script>
     </body>
