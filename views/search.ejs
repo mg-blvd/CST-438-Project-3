@@ -5,27 +5,23 @@
     
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--navigation bar style-->
-    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
-    <!--rest of body style-->
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
     
  </head>
  
-    <body>
+    <body class="error_background">
         <% if(!(airQualitySuccess == "success")) { %>
                 
-                <div class"container">
+                <div class="container">
                     
                     <div class="row">
                         
-                        <div class="col" style="padding-top:20%; padding-left:15%;">
+                        <div class="col" style="padding-top:20%;">
                             
-                            <h2 class="display-5"> The location was not found! Try again </h2> <br>
+                            <center><h2 class="display-5"> The location was not found! Try again </h2> <br>
                             
-                            <a href='/'><button>Home</button></a>
+                            <a href='/'><button class="search_button">Home</button></a></center>
                         
                         </div>
                         
@@ -34,8 +30,8 @@
                 </div>
                 
             <% } else { %>
-                <div class="jumbotron">
-                    <h1 class="text-center" id="sitename">
+                <div class="jumbotron search">
+                    <h1 class="text-center" id="search_sitename">
                         <%=airQualityInfo.country%>, <%=airQualityInfo.state%> (<%=covidInfo.state_ab%>)
                     </h1>
                     
@@ -50,7 +46,7 @@
                             <div id="map" class="map"></div>
                         </div>
                     
-                        <div class="col">
+                        <div class="col border">
                             
                             <h4 id="covidCases"><u><i>Covid Cases for <%=airQualityInfo.state%></i></u> <br>
                             
@@ -85,7 +81,7 @@
                                     <input name="desc" placeholder="Ex. My Home"><input type="submit" value="Click here!">
                                 </form>
                             <% }else{ %>
-                                <a href='/login'><button>Login or register to pin this location!</button></a>
+                                <a href='/login'><button class="search_button">Login or register to pin this location!</button></a>
                             <% } %>
                         </div>
                     </div>

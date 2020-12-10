@@ -6,14 +6,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">        
     </head>
     
-    <body class="log-background">
+    <body class="admin_background">
         <!--navigation bar-->
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #222831 ">
             <div class="nav container">
                 <!--left side-->
-                <i class="navLogos fas fa-map-signs"><a class="nav-brand" style="color:#fff;" href="/">  Should I Go There?</a></i>
+                <i class="fas fa-map-signs" style="font-size:30px; color:#44d7a8;"><a class="nav-brand" style="color:#fff;" href="/">  Should I Go There?</a></i>
                 <!--right side-->
-                <li class="nav-item nav-link"><i class="navLogos fas fa-sign-out-alt"><a class="nav-item" style="color:#fff;" href="/logout">  Log Out</a></i></li>
+                <li class="nav-item nav-link"><i class="fas fa-sign-out-alt" style="font-size:30px; color:#44d7a8;"><a class="nav-item" style="color:#fff;" href="/logout">  Log Out</a></i></li>
             </div>
         </nav>
         
@@ -28,15 +28,12 @@
         
         <div class="border d-flex flex-row flex-wrap">
             <%users.forEach(function(usr){%>
-                <div id="wholeItem<%=usr.pin_id%>" class="border" style="max-width: 200px; max-height: 450px; padding: 5px;">
-                <ul>
-                    <li>
-                        User Id: <%=usr.user_id%>
-                    </li>
-                    <li>
-                        Username: <%=usr.username%>
-                    </li>
-                </ul>
+                <div id="wholeItem<%=usr.pin_id%>" class="border">
+                <center><h8>
+                    User Id: <%=usr.user_id%> 
+                    <br>
+                    Username: <%=usr.username%>
+                </h8></center>
                 
                 <ul>
                     <li>
@@ -58,12 +55,12 @@
                         
                     </li>
                     <li id="description<%=usr.pin_id%>">
-                        desc: <%=usr.description%>
+                        Desc: <%=usr.description%>
                     </li>
                 </ul>
                 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal<%=usr.pin_id%>">Modify</button>
+                <center><button type="button" class="adminButton btn" data-toggle="modal" data-target="#editModal<%=usr.pin_id%>">Modify</button></center>
                 
                 <!-- Modal -->
                 <div class="modal fade" id="editModal<%=usr.pin_id%>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<%=usr.pin_id%>" aria-hidden="true">
@@ -124,7 +121,7 @@
         <div class="border d-flex flex-row flex-wrap">
             <!--for loop the states here-->
             <%states.forEach(function(stt){%>
-                <div id="wholeItem<%=stt.state_ab%>" class="border" style="max-width: 200px; padding: 5px;">
+                <div id="wholeItem<%=stt.state_ab%>" class="border" style="padding: 15px;">
                     <center><h8><%=stt.state_name%>, <%=stt.state_ab%></h8></center>
                     <br>
                     <h8>Covid data:</h8>
